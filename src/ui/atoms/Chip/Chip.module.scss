@@ -1,0 +1,21 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.default {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.accent {
+  background: linear-gradient(120deg, rgba(109, 241, 255, 0.14), rgba(102, 179, 255, 0.12));
+  color: var(--text);
+}

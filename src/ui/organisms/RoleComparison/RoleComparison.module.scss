@@ -1,0 +1,84 @@
+.section {
+  padding: 0; // Full width cards often touch the edges or have small gap
+  background-color: #05060f;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cardPersonal {
+  background-color: #e5e5e5; // Light grey from screenshot
+  color: #111;
+  padding: clamp(40px, 5vw, 80px);
+}
+
+.cardProfessional {
+  background-color: #cbbba0; // Tan/Beige from screenshot
+  color: #111;
+  padding: clamp(40px, 5vw, 80px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: clamp(32px, 6vw, 60px);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: clamp(24px, 4vw, 40px);
+}
+
+.roleTitle {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.roleSubtitle {
+  font-size: 16px;
+  color: #222; // Darker color instead of opacity for better contrast
+  font-weight: 500;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #000;
+  border-radius: 50%;
+  margin-top: 12px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.item {
+  border-bottom: 1px dotted rgba(0,0,0,0.2);
+  padding-bottom: 20px;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.itemTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #000; // Darker for better contrast
+}
+
+.itemText {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333; // Much darker for readability
+}

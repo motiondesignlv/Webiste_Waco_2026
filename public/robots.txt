@@ -1,0 +1,12 @@
+# Robots.txt for Waco3 Marketing Site
+# https://www.waco3.io/robots.txt
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.waco3.io/sitemap.xml
+
+# Crawl delay (optional - remove if causing issues)
+# Crawl-delay: 1

@@ -1,0 +1,86 @@
+@use "../../../styles/mixins";
+
+.section {
+  background-color: #f2f2f2; // Light grey similar to grid section
+  color: #111;
+  padding: clamp(60px, 10vw, 120px) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 8vw, 80px);
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.leftCol {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+
+  @media (max-width: 900px) {
+    position: static;
+  }
+}
+
+.title {
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.descriptions {
+  p {
+    font-size: 18px;
+    margin-bottom: 24px;
+    color: rgba(0,0,0,0.8);
+    max-width: 400px;
+    line-height: 1.5;
+  }
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 6vw, 60px);
+}
+
+.feature {
+  display: flex;
+  gap: 24px;
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  
+  svg {
+    width: 32px;
+    height: 32px;
+    color: #111;
+  }
+}
+
+.featureContent {
+  padding-top: 4px;
+}
+
+.featureTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.featureText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.7);
+  max-width: 500px;
+}
