@@ -6,37 +6,114 @@
   position: relative;
   overflow: hidden;
 
-  // X-Ray image on the right with gradient fade
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 60%;
-    background-image:
-      linear-gradient(to right, var(--bg, #05060f) 0%, transparent 40%),
-      url("/xray.png");
-    background-size: cover, cover;
-    background-position: center, center right;
-    background-repeat: no-repeat;
+  // Ensure content is above the carousel
+  > .page-shell,
+  > :global(.page-shell) {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// Image carousel container
+.imageCarousel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  z-index: 0;
+  pointer-events: none;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+}
+
+.carouselImage {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+
+  &.active {
     opacity: 0.7;
-    pointer-events: none;
-    z-index: 0;
+    transform: scale(1);
 
     @media (max-width: 900px) {
-      width: 100%;
       opacity: 0.3;
-      background-image:
-        linear-gradient(to bottom, var(--bg, #05060f) 0%, transparent 30%, transparent 70%, var(--bg, #05060f) 100%),
-        url("/xray.png");
     }
   }
 
-  // Ensure content is above the background
-  > * {
-    position: relative;
-    z-index: 1;
+  // Glitch effect during transition
+  &.glitch {
+    animation: glitchTransition 0.3s ease-out;
+  }
+}
+
+// Gradient overlay to fade into content
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bg, #05060f) 0%, transparent 40%);
+  z-index: 1;
+
+  @media (max-width: 900px) {
+    background: linear-gradient(
+      to bottom,
+      var(--bg, #05060f) 0%,
+      transparent 30%,
+      transparent 70%,
+      var(--bg, #05060f) 100%
+    );
+  }
+}
+
+// Glitch keyframes
+@keyframes glitchTransition {
+  0% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1) translateX(0);
+  }
+  10% {
+    clip-path: inset(20% 0 40% 0);
+    transform: scale(1.01) translateX(-5px);
+  }
+  20% {
+    clip-path: inset(60% 0 10% 0);
+    transform: scale(0.99) translateX(5px);
+  }
+  30% {
+    clip-path: inset(10% 0 70% 0);
+    transform: scale(1.02) translateX(-3px);
+  }
+  40% {
+    clip-path: inset(50% 0 20% 0);
+    transform: scale(1) translateX(3px);
+  }
+  50% {
+    clip-path: inset(30% 0 50% 0);
+    transform: scale(1.01) translateX(-2px);
+  }
+  60% {
+    clip-path: inset(70% 0 5% 0);
+    transform: scale(0.99) translateX(2px);
+  }
+  70% {
+    clip-path: inset(5% 0 60% 0);
+    transform: scale(1) translateX(-1px);
+  }
+  80% {
+    clip-path: inset(40% 0 30% 0);
+    transform: scale(1.005) translateX(1px);
+  }
+  90% {
+    clip-path: inset(15% 0 45% 0);
+    transform: scale(1) translateX(0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1) translateX(0);
   }
 }
 

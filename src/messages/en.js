@@ -515,6 +515,8 @@ const en = {
     eyebrow: "Pricing",
     title: "Simple Pricing. Serious Value.",
     subtitle: "One plan with everything you need. No per-seat charges. No surprise fees.",
+    annualPrefix: "or",
+    everythingIncluded: "Everything included:",
     plan: {
       name: "Pro Plan",
       price: "$19",
@@ -621,6 +623,8 @@ const en = {
       },
     },
     formNote: "No spam. Just updates and tips for winning more clients.",
+    successTitle: "You're in!",
+    successMessage: "Check your email to get started with your free trial.",
     founderNote: {
       title: "A note from the founder:",
       body: "\"I built Waco3 because I was tired of spending Sunday nights writing proposals instead of spending time with my family. I was tired of wondering if clients even read the work I put into them. I was tired of guessing when to follow up.\n\nIf you're a freelancer who feels the same way, I built this for you. Start your free trial and let's change how creative professionals win clients.\"",
@@ -628,6 +632,9 @@ const en = {
     },
   },
   footer: {
+    navigationTitle: "Navigation",
+    legalTitle: "Legal",
+    connectTitle: "Connect",
     navigation: ["Features", "Pricing", "FAQ", "Blog", "Contact"],
     legal: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
     social: ["Instagram"],

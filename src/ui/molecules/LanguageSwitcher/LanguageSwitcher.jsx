@@ -13,7 +13,8 @@ const GlobeIcon = () => (
 );
 
 export default function LanguageSwitcher() {
-  const { locale, setLocale } = useLocale();
+  const { locale, setLocale, dictionary } = useLocale();
+  const lang = dictionary?.language || {};
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -38,7 +39,7 @@ export default function LanguageSwitcher() {
         type="button"
         className={styles.trigger}
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Change language"
+        aria-label={lang.label || "Language"}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -53,7 +54,7 @@ export default function LanguageSwitcher() {
             className={`${styles.option} ${locale === "en" ? styles.active : ""}`}
             onClick={() => handleSetLocale("en")}
           >
-            <span>English</span>
+            <span>{lang.english || "English"}</span>
             <span className={styles.code}>EN</span>
           </button>
           <button
@@ -61,7 +62,7 @@ export default function LanguageSwitcher() {
             className={`${styles.option} ${locale === "es" ? styles.active : ""}`}
             onClick={() => handleSetLocale("es")}
           >
-            <span>Español</span>
+            <span>{lang.spanish || "Español"}</span>
             <span className={styles.code}>ES</span>
           </button>
         </div>
