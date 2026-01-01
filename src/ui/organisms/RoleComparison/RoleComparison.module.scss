@@ -20,8 +20,8 @@
 }
 
 .cardProfessional {
-  background-color: #cbbba0; // Tan/Beige from screenshot
-  color: #111;
+  background: linear-gradient(135deg, #2a6090 0%, #153d5e 35%, #0a2540 70%, #000 100%);
+  color: #fff;
   padding: clamp(40px, 5vw, 80px);
 }
 
@@ -81,4 +81,33 @@
   font-size: 15px;
   line-height: 1.5;
   color: #333; // Much darker for readability
+}
+
+.logo {
+  height: clamp(28px, 5vw, 48px);
+  width: auto;
+  filter: brightness(0) invert(1); // Make dark logo white
+}
+
+// Professional card light text overrides
+.cardProfessional {
+  .roleSubtitle {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .dot {
+    background-color: #fff;
+  }
+  
+  .item {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .itemTitle {
+    color: #fff;
+  }
+  
+  .itemText {
+    color: rgba(255, 255, 255, 0.85);
+  }
 }

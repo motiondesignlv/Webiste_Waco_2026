@@ -48,10 +48,10 @@ const SYMBOLS = [
   '⚙', '⚛', '⚑', '⚐', '☰', '☱', '☲', '☳',
   '⌂', '⌘', '⌥', '⌃', '⇧', '⎋', '⏎', '⏏',
   '✉', '☎', '⌚', '⏱', '⏲', '⧗', '⧖',
-  '◎', '◉', '◈', '◇', '◆', '▣', '▢', '▤', '▥', '▦', '▧', '▨', '▩',
+  '◎', '◉', '◈', '◇', '◆', '▣', '▢', '▤',,
 ];
 
-const PARTICLE_COUNT = 169; // Increased by 50%
+const PARTICLE_COUNT = 80;
 const MOUSE_ATTRACTION_RADIUS = 150;
 const MOUSE_ATTRACTION_STRENGTH = 0.015;
 
@@ -134,7 +134,7 @@ export default function ParticleBackground() {
         text.y = random(screenHeight * 0.05, screenHeight * 0.95);
 
         // Varied scale - small to large for visual depth
-        text.scale.set(random(0.15, 1.5));
+        text.scale.set(random(0.06, 0.55));
         text.alpha = random(0.08, 0.22);
         text.anchor.set(0.5);
 

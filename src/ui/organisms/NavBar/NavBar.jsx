@@ -15,7 +15,7 @@ export default function NavBar({ dictionary }) {
           <div className={styles.actions}>
             <LanguageSwitcher />
             <Button as="a" href="#waitlist" variant="primary" size="md">
-              {nav.primaryCta || "Join Waitlist"}
+              {nav.primaryCta}
             </Button>
           </div>
         </div>

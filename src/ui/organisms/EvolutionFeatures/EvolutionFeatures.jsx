@@ -8,27 +8,11 @@ const icons = [
   <svg key="simple" fill="currentColor" viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>,
 ];
 
-const defaultCopy = {
-  title: ["Designed for You.", "Built for Growth."],
-  descriptions: [
-    "Everything you need to win clients and get paid.",
-    "Finally, a platform that works as hard as you do.",
-  ],
-  features: [
-    { title: "AI-Powered Creation", text: "No competitor has meaningful AI features like this. Generate full proposals from a few bullet points." },
-    { title: "Client Behavioral Analytics", text: "See session recordings and engagement scores. Know exactly what your client looked at and for how long." },
-    { title: "LatAm-First Design", text: "Spanish interface, MercadoPago integration, and PPP pricing that makes sense for the region." },
-    { title: "Simplicity & Clarity", text: "One simple $19 plan. No complex per-seat pricing or hidden fees. Just everything you need." },
-  ],
-};
-
 export default function EvolutionFeatures({ dictionary }) {
-  const dictCopy = dictionary?.evolutionFeatures;
-  const copy = {
-    title: dictCopy?.title || defaultCopy.title,
-    descriptions: dictCopy?.descriptions || defaultCopy.descriptions,
-    features: dictCopy?.features || defaultCopy.features,
-  };
+  const copy = dictionary?.evolutionFeatures || {};
+  const title = copy.title || [];
+  const descriptions = copy.descriptions || [];
+  const features = copy.features || [];
 
   return (
     <section className={styles.section}>
@@ -36,18 +20,18 @@ export default function EvolutionFeatures({ dictionary }) {
         <div className={styles.grid}>
           <ScrollReveal className={styles.leftCol}>
             <h2 className={styles.title}>
-              {copy.title[0]}
+              {title[0]}
               <br />
-              {copy.title[1]}
+              {title[1]}
             </h2>
             <div className={styles.descriptions}>
-              <p>{copy.descriptions[0]}</p>
-              <p>{copy.descriptions[1]}</p>
+              <p>{descriptions[0]}</p>
+              <p>{descriptions[1]}</p>
             </div>
           </ScrollReveal>
           <ScrollReveal stagger className={styles.rightCol}>
             <div className={styles.featureList}>
-              {copy.features.map((feature, i) => (
+              {features.map((feature, i) => (
                 <div key={i} className={styles.feature}>
                   <div className={styles.iconWrapper}>
                     {icons[i]}

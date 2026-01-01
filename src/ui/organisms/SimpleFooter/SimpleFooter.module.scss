@@ -96,8 +96,8 @@
 .bigLogo {
   width: 30%;
   height: auto;
-  opacity: 1;
-  filter: brightness(0) invert(1);
+  opacity: 0.25;
+  margin: 0 auto;
 
   @media (max-width: 600px) {
     width: 75%;

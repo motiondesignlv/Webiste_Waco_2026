@@ -30,18 +30,7 @@ function FAQSchema({ items }) {
 export default function QuickAnswers({ dictionary }) {
   const [openIndex, setOpenIndex] = useState(null);
 
-  const copy = dictionary?.faq || {
-    eyebrow: "FAQ",
-    title: "Questions? We've Got Answers.",
-    items: [
-      { q: "Do my clients need to create an account to view proposals?", a: "Nope. Clients click your link and see a beautiful proposal instantly. No signup, no login, no friction. They see your work; you see their engagement data." },
-      { q: "Will AI-generated proposals sound generic?", a: "The AI creates a strong first draft with professional structure and persuasive language. Then you customize it with your specific project details, voice, and expertise. The result sounds like you—just faster." },
-      { q: "What kind of analytics do I get?", a: "You'll see: total viewing time, time spent per section, number of views, return visits, device type (mobile/desktop), engagement score (High/Medium/Low), session recordings showing scroll behavior, and AI-generated insights about what to do next." },
-      { q: "Can I still send PDFs?", a: "Absolutely. Generate professional PDFs with your branding for clients who prefer attachments. Web links give you tracking; PDFs give you flexibility. Use both." },
-      { q: "Is my data secure?", a: "Yes. All data is encrypted in transit and at rest. We never share your proposals or client information with third parties. Your work stays yours." },
-      { q: "Do you offer refunds?", a: "Yes. 30-day money-back guarantee, no questions asked. We're confident Waco3 will save you time and win you clients—but if it doesn't, you pay nothing." },
-    ],
-  };
+  const copy = dictionary?.faq || {};
 
   const toggle = (i) => {
     setOpenIndex(openIndex === i ? null : i);
@@ -49,7 +38,7 @@ export default function QuickAnswers({ dictionary }) {
 
   return (
     <section className={styles.section} id="faq" aria-labelledby="faq-title">
-      <FAQSchema items={copy.items} />
+      <FAQSchema items={copy.items || []} />
       <div className="page-shell">
         <ScrollReveal className={styles.header}>
           <p className={styles.eyebrow}>{copy.eyebrow}</p>
@@ -57,7 +46,7 @@ export default function QuickAnswers({ dictionary }) {
         </ScrollReveal>
 
         <ScrollReveal className={styles.list} stagger>
-          {copy.items.map((item, i) => {
+          {(copy.items || []).map((item, i) => {
             const isOpen = openIndex === i;
             const answerId = `faq-answer-${i}`;
             return (

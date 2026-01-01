@@ -3,54 +3,17 @@ import styles from "./ConditionGrid.module.scss";
 import Button from "@/ui/atoms/Button/Button";
 import ScrollReveal from "@/ui/atoms/ScrollReveal/ScrollReveal";
 
-const defaultCopy = {
-  title: ["From web design to video production —", "One platform for every creative professional."],
-  cta: "Join the Waitlist",
-  categories: [
-    {
-      title: "Design & Branding",
-      items: [
-        "Logo Design", "Brand Identity", "Web Design", "UI/UX Design", "Graphic Design",
-        "Packaging Design", "Print Design", "Motion Graphics", "Illustration", "Typography",
-        "Social Media Graphics", "Presentation Design", "Icon Design", "Infographics",
-      ],
-    },
-    {
-      title: "Development & Tech",
-      items: [
-        "Web Development", "WordPress", "Shopify", "Webflow", "App Development",
-        "Custom Software", "API Integration", "E-commerce", "Site Maintenance",
-        "Database Design", "No-Code Solutions", "Technical Consulting", "Automation",
-      ],
-    },
-    {
-      title: "Content & Marketing",
-      items: [
-        "Copywriting", "Content Strategy", "Social Media Management", "Video Production",
-        "Photography", "Podcast Production", "Email Marketing", "SEO Services",
-        "Ad Campaigns", "Brand Storytelling", "Blog Writing", "Product Descriptions",
-      ],
-    },
-  ],
-  footnote: "Not on the list? Waco3 works for any industry — real estate, consulting, coaching, legal, accounting, and beyond.",
-};
-
 export default function ConditionGrid({ dictionary }) {
-  const dictCopy = dictionary?.conditionGrid;
-  const copy = {
-    title: dictCopy?.title || defaultCopy.title,
-    cta: dictCopy?.cta || defaultCopy.cta,
-    categories: dictCopy?.categories || defaultCopy.categories,
-    footnote: dictCopy?.footnote || defaultCopy.footnote,
-  };
+  const copy = dictionary?.conditionGrid || {};
+  const title = copy.title || [];
 
   return (
     <section className={styles.section}>
       <div className="page-shell">
         <ScrollReveal className={styles.header}>
           <h2 className={styles.title}>
-            {copy.title[0]}<br />
-            {copy.title[1]}
+            {title[0]}<br />
+            {title[1]}
           </h2>
           <div className={styles.cta}>
             <Button as="a" href="#waitlist" variant="primary" className={styles.button} icon={
@@ -63,7 +26,7 @@ export default function ConditionGrid({ dictionary }) {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal className={styles.grid} stagger>
+        {/* <ScrollReveal className={styles.grid} stagger>
           {copy.categories.map((cat, i) => (
             <div key={i} className={styles.column}>
               <h3 className={styles.catTitle}>{cat.title}</h3>
@@ -80,7 +43,7 @@ export default function ConditionGrid({ dictionary }) {
           <p className={styles.footnote}>
             {copy.footnote}
           </p>
-        </ScrollReveal>
+        </ScrollReveal> */}
       </div>
     </section>
   );

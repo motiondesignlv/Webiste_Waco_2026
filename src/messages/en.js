@@ -11,7 +11,7 @@ const en = {
     spanish: "Español",
   },
   nav: {
-    primaryCta: "Join the Waitlist",
+    primaryCta: "Start a Free Trial",
     secondaryCta: "Watch how it works",
   },
   hero: {
@@ -19,7 +19,7 @@ const en = {
     title: "Create Winning Proposals in Minutes, Not Hours",
     subtitle:
       "Waco3 uses AI to write professional proposals, quotes, and invoices for creative freelancers. Then shows you exactly when clients view them, which sections they read, and the perfect moment to follow up.",
-    primaryCta: "Join the Waitlist",
+    primaryCta: "Start a Free Trial",
     primaryCtaSubtitle: "Be first in line. Free early access for founding members.",
     secondaryCta: "Watch how it works (2 min)",
     trust: "Built for designers, developers, consultants, photographers, and architects.",
@@ -31,7 +31,7 @@ const en = {
   },
   socialProof: {
     waitlistCount: "1,200+",
-    message: "freelancers on the waitlist",
+    message: "freelancers already signed up",
     tagline: "Built by freelancers, for freelancers",
   },
   problemAgitation: {
@@ -40,20 +40,29 @@ const en = {
       {
         icon: "clock",
         title: "The Time Drain",
-        stat: "4+ hours per proposal",
+        stat: "4+",
+        statUnit: "hours",
+        statLabel: "per proposal",
         body: "You're a developer, not a copywriter. But every new project means hours of writing, formatting, and designing proposals in Word or Canva. That's unpaid time you'll never get back.",
+        image: "/soundFamiliar/time.jpg",
       },
       {
         icon: "inbox",
         title: "The Black Hole",
-        stat: "Send and... pray?",
+        stat: "0",
+        statUnit: "replies",
+        statLabel: "Send and... pray?",
         body: "You hit send on a proposal you spent hours perfecting. Then nothing. No reply. No rejection. Just silence. Did they even open it? You have no idea.",
+        image: "/soundFamiliar/praying.jpg",
       },
       {
         icon: "dice",
         title: "The Guessing Game",
-        stat: "When should I follow up?",
+        stat: "?",
+        statUnit: "",
+        statLabel: "When should I follow up?",
         body: "Too early feels pushy. Too late and they've moved on. Without knowing if they've read your proposal—or what caught their attention—you're just guessing.",
+        image: "/soundFamiliar/poker_gambling.jpg",
       },
     ],
     closingStatement:
@@ -94,7 +103,7 @@ const en = {
   },
   conditionGrid: {
     title: ["From web design to video production —", "One platform for every creative professional."],
-    cta: "Join the Waitlist",
+    cta: "Start a Free Trial",
     categories: [
       {
         title: "Design & Branding",
@@ -293,7 +302,7 @@ const en = {
         description: "Never wonder \"did they see it?\" again.",
       },
     ],
-    cta: "Join the Waitlist",
+    cta: "Start a Free Trial",
     ctaSubtitle: "Get early access and lock in founding member pricing.",
   },
   features: {
@@ -442,8 +451,8 @@ const en = {
     items: [
       {
         quote:
-          "I used to spend 4-5 hours on every proposal. Now I spend 20 minutes—and they look way better. Last month I sent twice as many proposals and won 3 new clients. Waco3 paid for itself on day one.",
-        author: "Marcus Chen",
+          "I used to spend 4-5 hours on every proposal. Now I spend 20 minutes, and they look way better.",
+        author: "Marcus C.",
         role: "Freelance Web Developer",
         location: "San Francisco",
         specialty: "React & Next.js",
@@ -451,8 +460,8 @@ const en = {
       },
       {
         quote:
-          "The analytics changed everything for me. I sent a proposal on Tuesday, saw the client spent 12 minutes reading it Wednesday morning, and called them that afternoon. Closed a $8,000 project on the spot. Before Waco3, I would have waited a week to follow up and probably lost it.",
-        author: "Sarah Mitchell",
+          "The analytics changed everything. I saw a client spend 12 minutes reading my proposal and called them that afternoon. Closed an $8,000 project on the spot.",
+        author: "Sarah M.",
         role: "UI/UX Designer",
         location: "London",
         specialty: "SaaS product design",
@@ -460,8 +469,8 @@ const en = {
       },
       {
         quote:
-          "I'm not a writer. Proposals were my least favorite part of freelancing. Now AI writes 90% of it and I just customize the details. My proposals actually sound professional now—not like I wrote them at midnight after finishing client work.",
-        author: "James Okonkwo",
+          "I'm not a writer. Now AI writes 90% of it and I just customize the details. My proposals actually sound professional now.",
+        author: "James O.",
         role: "WordPress Developer",
         location: "Toronto",
         specialty: "E-commerce sites",
@@ -469,8 +478,8 @@ const en = {
       },
       {
         quote:
-          "The session recordings are wild. I watched a client re-read my pricing section three times. Knew exactly what their concern was before I even picked up the phone. That insight alone is worth the subscription.",
-        author: "Elena Rodriguez",
+          "I watched a client re-read my pricing section three times. Knew exactly what their concern was before I picked up the phone.",
+        author: "Elena R.",
         role: "Brand Designer",
         location: "Miami",
         specialty: "Restaurant & hospitality branding",
@@ -487,7 +496,7 @@ const en = {
         { title: "Generic Templates", text: "Using the same Word doc that looks like everyone else's." },
         { title: "Guessing Games", text: "Sending PDFs into the void and wondering if they were opened." },
         { title: "Slow Turnaround", text: "Taking days to reply because paperwork is a chore." },
-        { title: "Chasing Payments", text: "Manual invoices and awkward payment reminders." },
+        // { title: "Chasing Payments", text: "Manual invoices and awkward payment reminders." },
       ],
     },
     newWay: {
@@ -497,7 +506,7 @@ const en = {
         { title: "AI-Powered Writing", text: "Generate persuasive, custom proposals in seconds." },
         { title: "Instant Analytics", text: "Know the moment your proposal is viewed and for how long." },
         { title: "Polished Design", text: "Look as professional as a top-tier agency automatically." },
-        { title: "One-Click Payments", text: "Integrated invoicing that makes getting paid effortless." },
+        // { title: "One-Click Payments", text: "Integrated invoicing that makes getting paid effortless." },
         { title: "Smart Follow-ups", text: "Data-driven insights on exactly when to reach out." },
       ],
     },
@@ -514,7 +523,7 @@ const en = {
       annualSaving: "save $38",
       foundingPrice: "$15",
       foundingNote: "Lock in founding member pricing: $15/month forever",
-      ctaLabel: "Join the Waitlist",
+      ctaLabel: "Start a Free Trial",
       features: [
         "Unlimited proposals, quotes, invoices",
         "AI document generation",
@@ -594,7 +603,7 @@ const en = {
       "Follow up at the perfect moment",
       "Win more clients with less effort",
     ],
-    ctaLabel: "Join the Waitlist",
+    ctaLabel: "Start a Free Trial",
     formFields: {
       email: "Email address",
       name: "First name (optional)",
@@ -611,10 +620,10 @@ const en = {
         ],
       },
     },
-    formNote: "No spam. Just early access news and founding member perks.",
+    formNote: "No spam. Just updates and tips for winning more clients.",
     founderNote: {
       title: "A note from the founder:",
-      body: "\"I built Waco3 because I was tired of spending Sunday nights writing proposals instead of spending time with my family. I was tired of wondering if clients even read the work I put into them. I was tired of guessing when to follow up.\n\nIf you're a freelancer who feels the same way, I built this for you. Join the waitlist and let's change how creative professionals win clients.\"",
+      body: "\"I built Waco3 because I was tired of spending Sunday nights writing proposals instead of spending time with my family. I was tired of wondering if clients even read the work I put into them. I was tired of guessing when to follow up.\n\nIf you're a freelancer who feels the same way, I built this for you. Start your free trial and let's change how creative professionals win clients.\"",
       signature: "[Founder Name]",
     },
   },
@@ -667,23 +676,27 @@ const en = {
     ],
   },
   featureHighlight: {
-    headline: "Anyone. Anywhere. Proposals in Minutes.",
+    headline: "Anyone. Anywhere.\nProposals in Minutes.",
     cards: [
       {
-        title: "No More Waiting",
+        title: "No More Waiting.",
         description: "Get professional proposals in minutes — no templates to fill out, no delays.",
+        image: "/proposal_in_minutes/no_more_minutes.png",
       },
       {
         title: "Smarter Than Guesswork",
         description: "We track client engagement and show you exactly what they care about — so you follow up smarter.",
+        image: "/proposal_in_minutes/smarter_than_gesswork.png",
       },
       {
         title: "Tailored to You",
         description: "Every proposal adapts to your brand and voice — not generic one-size-fits-all templates.",
+        image: "/proposal_in_minutes/tailored_to_you.png",
       },
       {
         title: "Always-On Awareness",
         description: "With each view, patterns emerge. You see what's changing — and why it matters.",
+        image: "/proposal_in_minutes/always_on_awarness.png",
       },
     ],
   },
@@ -883,15 +896,151 @@ const en = {
     secondaryHref: "#pricing",
   },
   socialProofBar: {
-    launching: "Launching Early 2025",
-    tagline: "Join the waitlist for founding member pricing",
+    launching: "Now Available",
+    tagline: "Start your free trial today",
   },
   needSelector: {
     titleLeft: ["One Platform.", "Every Document.", "Total Visibility."],
     chips: ["Proposals", "Quotes", "Invoices", "Analytics", "Templates", "AI Editing"],
     titleRight: ["From send", "to seen—", "you'll know."],
     subtitle: "Watch them open. See what they read. Know when to close.",
-    cta: "Join the Waitlist",
+    cta: "Start a Free Trial",
+  },
+  aiProposalSection: {
+    eyebrow: "How It Works",
+    title: "Create professional proposals with AI that understands your business.",
+    features: [
+      {
+        id: "ai-generation",
+        title: "Creation",
+        headline: "Describe your project in plain language.",
+        bullets: [
+          "Executive summary that sells your approach",
+          "Detailed scope of work",
+          "Professional timeline with milestones",
+          "Pricing table with line items",
+          "Terms and conditions",
+          "About section with your credentials",
+        ],
+        body: "No templates to fill out. No copy-pasting from old projects. Just tell AI what you're building, and it writes a proposal your clients will actually want to read.",
+      },
+      {
+        id: "smart-editing",
+        title: "Editing",
+        headline: "Highlight any text to edit with AI.",
+        bullets: [
+          '"Make this section more confident"',
+          '"Shorten this to 2 sentences"',
+          '"Add more technical detail"',
+          '"Translate to Spanish"',
+          '"Explain why this matters to the client"',
+        ],
+        body: "AI suggests 3 variations. Pick your favorite and stay in control.",
+      },
+      {
+        id: "branding",
+        title: "Branding",
+        headline: "Upload your logo. Pick your colors. Choose your fonts.",
+        bullets: [
+          "Brand colors applied throughout",
+          "Your logo perfectly placed",
+          "Consistent typography",
+          "Custom footer with contact info",
+          "Saved terms and conditions",
+        ],
+        body: "Change your brand? Update once and it will reflect on every future document.",
+      },
+    ],
+  },
+  shareSection: {
+    eyebrow: "Delivery",
+    title: "Multiple ways to deliver your proposals to clients.",
+    features: [
+      {
+        id: "links",
+        icon: "share",
+        title: "Shareable Links",
+        headline: "Track engagement with web links",
+        bullets: [
+          "Real-time engagement tracking",
+          "Session recordings",
+          "AI-powered follow-up recommendations",
+          "Password-protected links for sensitive proposals",
+        ],
+      },
+      {
+        id: "pdf",
+        icon: "pdf",
+        title: "Professional PDFs",
+        headline: "Some clients want attachments. We've got you covered.",
+        bullets: [
+          "Full-color branded PDFs",
+          "Print-optimized B&W versions",
+          "Custom margins and layouts",
+          "Automatic page numbering",
+          "Your logo on every page",
+        ],
+      },
+    ],
+    warning: {
+      title: "Important",
+      text: "Downloaded PDFs cannot be tracked. Share via link to access analytics and engagement insights.",
+    },
+  },
+  engagementSection: {
+    eyebrow: "Analytics",
+    title: "Know exactly how clients engage with your proposals and when to follow up.",
+    features: [
+      {
+        id: "analytics",
+        title: "Client Engagement Analytics",
+        headline: "Track every interaction",
+        bullets: [
+          "Engagement Score — High, Medium, or Low intent at a glance",
+          "Time Spent — Total viewing time and time per section",
+          "Return Visits — How many times they came back",
+          "Device Type — Desktop or mobile viewing",
+          "Section Focus — Which parts got the most attention",
+        ],
+        body: "Know if they spent 30 seconds or 30 minutes. Know if they focused on pricing or process. Know if they forwarded it to their boss.",
+      },
+      {
+        id: "recordings",
+        title: "Session Recordings",
+        headline: "Watch clients read your proposal (yes, really)",
+        body: "See exactly how clients interact with your proposal. It's like sitting next to them while they review your work, without the awkwardness.",
+        bullets: [
+          "Where they scrolled",
+          "What they re-read",
+          "Where they paused",
+          "What they skipped",
+        ],
+      },
+      {
+        id: "followup",
+        title: "AI-Powered Follow-Up Recommendations",
+        headline: "Know exactly when and how to follow up",
+        body: "Waco3 analyzes client behavior and tells you what to do next. Stop guessing. Start closing.",
+        insights: [
+          "Client viewed pricing 3 times, they're interested but may have budget concerns. Consider offering payment plans.",
+          "High engagement with timeline section, client may be on deadline. Mention quick turnaround in your follow-up.",
+          "Client forwarded to 2 other viewers, this is a committee decision. Prepare talking points for stakeholders.",
+        ],
+      },
+    ],
+  },
+  waitlistModal: {
+    successTitle: "You're in!",
+    successMessage: "Check your email to get started with your free trial.",
+    title: "Start Your Free Trial",
+    subtitle: "Get started with Waco3 today and see how AI-powered proposals can win you more clients.",
+    emailLabel: "Email Address *",
+    emailPlaceholder: "you@example.com",
+    nameLabel: "Name (Optional)",
+    namePlaceholder: "Your name",
+    error: "Something went wrong. Please try again.",
+    submitLoading: "Starting...",
+    submit: "Start Free Trial",
   },
 };
 

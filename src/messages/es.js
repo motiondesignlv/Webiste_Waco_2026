@@ -347,23 +347,23 @@ const es = {
     title: "Los Freelancers Están Ganando Más Clientes con Waco3",
     items: [
       {
-        quote: "Antes pasaba 4-5 horas en cada propuesta. Ahora paso 20 minutos—y se ven mucho mejor. El mes pasado envié el doble de propuestas y gané 3 nuevos clientes. Waco3 se pagó solo en el primer día.",
-        author: "Marcus Chen",
+        quote: "Antes pasaba 4-5 horas en cada propuesta. Ahora paso 20 minutos, y se ven mucho mejor.",
+        author: "Marcus C.",
         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       },
       {
-        quote: "Las analíticas lo cambiaron todo para mí. Envié una propuesta el martes, vi que el cliente pasó 12 minutos leyéndola el miércoles por la mañana, y lo llamé esa tarde. Cerré un proyecto de $8,000 en el momento. Antes de Waco3, habría esperado una semana para dar seguimiento y probablemente lo habría perdido.",
-        author: "Sarah Mitchell",
+        quote: "Las analíticas lo cambiaron todo. Vi que un cliente pasó 12 minutos leyendo mi propuesta y lo llamé esa tarde. Cerré un proyecto de $8,000 en el momento.",
+        author: "Sarah M.",
         image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       },
       {
-        quote: "No soy escritor. Las propuestas eran mi parte menos favorita del freelancing. Ahora la IA escribe el 90% y yo solo personalizo los detalles. Mis propuestas realmente suenan profesionales ahora—no como si las hubiera escrito a medianoche después de terminar trabajo de clientes.",
-        author: "James Okonkwo",
+        quote: "No soy escritor. Ahora la IA escribe el 90% y yo solo personalizo los detalles. Mis propuestas realmente suenan profesionales ahora.",
+        author: "James O.",
         image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       },
       {
-        quote: "Las grabaciones de sesión son increíbles. Vi a un cliente releer mi sección de precios tres veces. Sabía exactamente cuál era su preocupación antes de contestar el teléfono. Esa información sola vale la suscripción.",
-        author: "Elena Rodriguez",
+        quote: "Vi a un cliente releer mi sección de precios tres veces. Sabía exactamente cuál era su preocupación antes de contestar el teléfono.",
+        author: "Elena R.",
         image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
       },
     ],

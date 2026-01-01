@@ -1,0 +1,293 @@
+@use "../../../styles/mixins";
+
+.section {
+  @include mixins.section-padding;
+  background-color: var(--bg, #05060f);
+  position: relative;
+  overflow: hidden;
+}
+
+// ============================================
+// Hero Split: Text Left, Video Right
+// ============================================
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  margin-bottom: clamp(64px, 10vw, 100px);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.heroText {
+  text-align: left;
+}
+
+.eyebrow {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent, #6df1ff);
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text, #e7ecf5);
+  line-height: 1.15;
+}
+
+.subtitle {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted, #9fb2d9);
+  max-width: 480px;
+}
+
+// Video wrapper with left-fade gradient
+.heroVideo {
+  width: 100%;
+  position: relative;
+}
+
+.videoWrapper {
+  position: relative;
+  overflow: hidden;
+
+  // Gradient overlay to blend with background on the left
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      var(--bg, #05060f) 0%,
+      rgba(5, 6, 15, 0.6) 15%,
+      transparent 40%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+// ============================================
+// Feature Cards Grid - 2 columns for delivery
+// ============================================
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(15, 26, 47, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 32px 64px rgba(0, 0, 0, 0.35),
+      0 0 40px rgba(109, 241, 255, 0.08);
+
+    .cardImage {
+      transform: scale(1.08);
+    }
+
+    .cardIcon {
+      filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.5));
+    }
+
+    .cardImageOverlay {
+      opacity: 0.5;
+    }
+  }
+}
+
+.cardImageWrapper {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 360px;
+  }
+
+  @media (max-width: 600px) {
+    height: 320px;
+  }
+}
+
+.cardImage {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cardImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 6, 15, 0.2) 0%,
+    rgba(5, 6, 15, 0.4) 50%,
+    rgba(5, 6, 15, 0.95) 100%
+  );
+  transition: opacity 0.4s ease;
+  opacity: 0.7;
+}
+
+// Icon - small, dark blue matching background
+.cardIcon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg, #05060f);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  transition: filter 0.3s ease, transform 0.3s ease;
+  z-index: 3;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Label and Title on the image
+.cardImageContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  z-index: 2;
+}
+
+.cardLabel {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent, #6df1ff);
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 600;
+  color: var(--text, #e7ecf5);
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.cardContent {
+  padding: 24px;
+}
+
+.bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text, #e7ecf5);
+    margin-bottom: 8px;
+
+    &::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent, #6df1ff);
+      font-weight: 600;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ============================================
+// Warning Notice
+// ============================================
+
+.warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(255, 193, 7, 0.08);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 16px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.warningIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 193, 7, 0.15);
+  border-radius: 10px;
+  color: #ffc107;
+  flex-shrink: 0;
+}
+
+.warningContent {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text, #e7ecf5);
+
+  strong {
+    color: #ffc107;
+  }
+}
+
+@media (max-width: 600px) {
+  .warning {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .warningIcon {
+    margin: 0 auto;
+  }
+}

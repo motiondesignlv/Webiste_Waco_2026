@@ -1,5 +1,5 @@
-import en from "@/messages/en.json";
-import es from "@/messages/es.json";
+import en from "@/messages/en.js";
+import es from "@/messages/es.js";
 
 export const locales = ["en", "es"];
 export const defaultLocale = "en";

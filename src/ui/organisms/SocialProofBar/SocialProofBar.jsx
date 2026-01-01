@@ -1,10 +1,7 @@
 import styles from "./SocialProofBar.module.scss";
 
 export default function SocialProofBar({ dictionary }) {
-  const copy = dictionary?.socialProofBar || {
-    launching: "Launching Early 2025",
-    tagline: "Join the waitlist for founding member pricing",
-  };
+  const copy = dictionary?.socialProofBar || {};
 
   return (
     <div className={styles.bar}>
