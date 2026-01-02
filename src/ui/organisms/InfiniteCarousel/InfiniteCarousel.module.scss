@@ -2,8 +2,8 @@
 
 .section {
   padding: 120px 0;
-  background-color: #05060f;
-  color: #fff;
+  background-color: var(--color-bg-primary);
+  color: var(--color-white);
   overflow: hidden;
   position: relative;
 }
@@ -13,7 +13,7 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: 56px;
-  color: var(--text, #e7ecf5);
+  color: var(--color-text-primary);
 }
 
 .track {
@@ -42,12 +42,12 @@
   width: 480px;
   min-height: 420px;
   flex-shrink: 0;
-  background: #111;
+  background: var(--color-grey-900);
   border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(109, 241, 255, 0.1);
+  border: 1px solid var(--color-accent-10);
 
   @media (max-width: 600px) {
     width: 320px;
@@ -61,7 +61,7 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  background: linear-gradient(180deg, rgba(26, 26, 26, 1), rgba(17, 17, 17, 1));
+  background: var(--gradient-card-content);
 }
 
 .quote {
@@ -69,7 +69,7 @@
   line-height: 1.55;
   margin-bottom: 32px;
   font-weight: 400;
-  color: var(--text, #e7ecf5);
+  color: var(--color-text-primary);
 
   @media (max-width: 600px) {
     font-size: 20px;
@@ -82,7 +82,7 @@
   gap: 16px;
   padding-top: 24px;
   margin-top: auto;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--color-white-10);
 }
 
 .avatar {
@@ -91,11 +91,11 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  border: 2px solid rgba(109, 241, 255, 0.3);
+  border: 2px solid var(--color-accent-30);
 }
 
 .author {
   font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  color: var(--color-white);
 }

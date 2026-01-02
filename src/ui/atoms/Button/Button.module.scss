@@ -23,18 +23,18 @@
 }
 
 .primary {
-  background: linear-gradient(120deg, var(--accent), var(--accent-2));
-  color: #020307;
-  box-shadow: 0 10px 40px rgba(109, 241, 255, 0.3);
+  background: var(--gradient-accent);
+  color: var(--color-bg-button-dark);
+  box-shadow: var(--shadow-glow-accent);
 }
 
 .primary:hover {
-  box-shadow: 0 14px 60px rgba(109, 241, 255, 0.36);
+  box-shadow: var(--shadow-glow-accent-strong);
 }
 
 .secondary {
   border-color: var(--border);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--color-white-4);
   color: var(--text);
 }
 

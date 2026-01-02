@@ -2,7 +2,7 @@
 
 .section {
   @include mixins.section-padding;
-  background-color: var(--bg, #05060f);
+  background-color: var(--color-bg-primary);
 }
 
 .header {
@@ -15,14 +15,14 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--accent, #6df1ff);
+  color: var(--color-accent-primary);
   margin-bottom: 16px;
 }
 
 .title {
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 600;
-  color: var(--text, #e7ecf5);
+  color: var(--color-text-primary);
 }
 
 .list {
@@ -33,10 +33,10 @@
 }
 
 .item {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--color-white-10);
 
   &:last-child {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--color-white-10);
   }
 }
 
@@ -52,19 +52,19 @@
   font-size: 17px;
   font-weight: 500;
   cursor: pointer;
-  color: var(--text, #e7ecf5);
+  color: var(--color-text-primary);
   font-family: inherit;
   gap: 16px;
 
   &:hover {
-    color: var(--accent, #6df1ff);
+    color: var(--color-accent-primary);
   }
 }
 
 .icon {
   font-size: 24px;
   font-weight: 300;
-  color: var(--accent, #6df1ff);
+  color: var(--color-accent-primary);
   flex-shrink: 0;
 }
 
@@ -76,13 +76,13 @@
     padding-bottom: 24px;
     margin: 0;
     line-height: 1.6;
-    color: var(--muted, #9fb2d9);
+    color: var(--color-text-muted);
     font-size: 15px;
   }
 }
 
 .open {
   .question {
-    color: var(--accent, #6df1ff);
+    color: var(--color-accent-primary);
   }
 }

@@ -12,7 +12,7 @@ export function OrganizationSchema() {
     url: "https://www.waco3.io",
     logo: "https://www.waco3.io/waco3.svg",
     description: "AI-powered proposal creation platform with client engagement analytics for freelancers and creative professionals.",
-    foundingDate: "2024",
+    foundingDate: "2025",
     sameAs: [
       "https://twitter.com/waco3io",
       "https://www.instagram.com/waco3io"

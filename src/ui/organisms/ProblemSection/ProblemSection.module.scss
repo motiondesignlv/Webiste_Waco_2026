@@ -2,7 +2,7 @@
 
 .section {
   @include mixins.section-padding;
-  background-color: var(--bg, #05060f);
+  background-color: var(--color-bg-primary);
 }
 
 .title {
@@ -10,7 +10,7 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: 56px;
-  color: var(--text, #e7ecf5);
+  color: var(--color-text-primary);
 }
 
 .grid {
@@ -22,7 +22,7 @@
 
 .card {
   position: relative;
-  border-radius: var(--radius-lg, 16px);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   min-height: 480px;
   background-size: cover;
@@ -37,15 +37,15 @@
   &:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow:
-      0 20px 40px rgba(0, 0, 0, 0.4),
-      0 0 60px rgba(109, 241, 255, 0.15);
+      0 20px 40px var(--color-black-40),
+      0 0 60px var(--color-accent-15);
 
     .cardOverlay {
       background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.1) 0%,
-        rgba(0, 0, 0, 0.3) 40%,
-        rgba(0, 0, 0, 0.8) 100%
+        var(--color-black-10) 0%,
+        var(--color-black-30) 40%,
+        var(--color-black-80) 100%
       );
     }
 
@@ -54,7 +54,7 @@
     }
 
     .statNumber {
-      color: var(--accent, #6df1ff);
+      color: var(--color-accent-primary);
     }
   }
 }
@@ -64,9 +64,9 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(0, 0, 0, 0.4) 40%,
-    rgba(0, 0, 0, 0.85) 100%
+    var(--color-black-20) 0%,
+    var(--color-black-40) 40%,
+    var(--color-black-85) 100%
   );
   z-index: 1;
   transition: background 0.4s ease;
@@ -92,7 +92,7 @@
 .statNumber {
   font-size: clamp(64px, 8vw, 96px);
   font-weight: 300;
-  color: #fff;
+  color: var(--color-white);
   line-height: 1;
   letter-spacing: -0.02em;
   transition: color 0.4s ease;
@@ -101,14 +101,14 @@
 .statUnit {
   font-size: clamp(18px, 2vw, 24px);
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--color-white-80);
   text-transform: lowercase;
 }
 
 .cardTitle {
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 600;
-  color: #fff;
+  color: var(--color-white);
   margin-top: 40px;
   margin-bottom: 12px;
 }
@@ -116,7 +116,7 @@
 .statLabel {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-white-70);
   margin-bottom: 16px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -125,7 +125,7 @@
 .body {
   font-size: 15px;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-white-85);
 }
 
 .closing {
@@ -137,14 +137,14 @@
 .closingText {
   font-size: 18px;
   line-height: 1.6;
-  color: var(--muted, #9fb2d9);
+  color: var(--color-text-muted);
   margin-bottom: 16px;
 }
 
 .closingCta {
   font-size: 20px;
   font-weight: 600;
-  color: var(--accent, #6df1ff);
+  color: var(--color-accent-primary);
 }
 
 @media (max-width: 1024px) {

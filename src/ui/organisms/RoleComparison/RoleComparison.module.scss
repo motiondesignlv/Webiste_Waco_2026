@@ -1,28 +1,38 @@
 .section {
   padding: 0; // Full width cards often touch the edges or have small gap
-  background-color: #05060f;
+  background-color: var(--color-bg-primary);
 }
 
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  
+
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
   }
 }
 
 .cardPersonal {
-  background-color: #e5e5e5; // Light grey from screenshot
-  color: #111;
+  background-color: var(--color-grey-200); // Light grey from screenshot
+  color: var(--color-grey-900);
   padding: clamp(40px, 5vw, 80px);
+  text-align: right;
+
+  .header {
+    flex-direction: row-reverse; // Move dot to the left
+  }
+
+  .item {
+    text-align: right;
+  }
 }
 
 .cardProfessional {
-  background: linear-gradient(135deg, #2a6090 0%, #153d5e 35%, #0a2540 70%, #000 100%);
-  color: #fff;
+  background: var(--gradient-professional);
+  color: var(--color-white);
   padding: clamp(40px, 5vw, 80px);
+  overflow: visible;
 }
 
 .header {
@@ -30,8 +40,9 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: clamp(32px, 6vw, 60px);
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--color-black-10);
   padding-bottom: clamp(24px, 4vw, 40px);
+  overflow: visible;
 }
 
 .roleTitle {
@@ -43,14 +54,14 @@
 
 .roleSubtitle {
   font-size: 16px;
-  color: #222; // Darker color instead of opacity for better contrast
+  color: var(--color-grey-800); // Darker color instead of opacity for better contrast
   font-weight: 500;
 }
 
 .dot {
   width: 12px;
   height: 12px;
-  background-color: #000;
+  background-color: var(--color-black);
   border-radius: 50%;
   margin-top: 12px;
 }
@@ -62,9 +73,9 @@
 }
 
 .item {
-  border-bottom: 1px dotted rgba(0,0,0,0.2);
+  border-bottom: 1px dotted var(--color-black-20);
   padding-bottom: 20px;
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -74,40 +85,34 @@
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 8px;
-  color: #000; // Darker for better contrast
+  color: var(--color-black); // Darker for better contrast
 }
 
 .itemText {
   font-size: 15px;
   line-height: 1.5;
-  color: #333; // Much darker for readability
-}
-
-.logo {
-  height: clamp(28px, 5vw, 48px);
-  width: auto;
-  filter: brightness(0) invert(1); // Make dark logo white
+  color: var(--color-grey-700); // Much darker for readability
 }
 
 // Professional card light text overrides
 .cardProfessional {
   .roleSubtitle {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-white-80);
   }
-  
+
   .dot {
-    background-color: #fff;
+    background-color: var(--color-white);
   }
-  
+
   .item {
-    border-bottom-color: rgba(255, 255, 255, 0.2);
+    border-bottom-color: var(--color-white-20);
   }
-  
+
   .itemTitle {
-    color: #fff;
+    color: var(--color-white);
   }
-  
+
   .itemText {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--color-white-85);
   }
 }

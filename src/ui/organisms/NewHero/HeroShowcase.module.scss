@@ -1,0 +1,388 @@
+.showcase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(12px, 1.5vw, 16px);
+  opacity: 0;
+  animation: showcaseReveal 0.8s ease-out 1.2s forwards;
+}
+
+@keyframes showcaseReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Ambient glow effect
+.glowOrb {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(
+    ellipse at center,
+    var(--color-accent-20) 0%,
+    var(--color-accent-10) 25%,
+    transparent 60%
+  );
+  filter: blur(60px);
+  z-index: 0;
+  pointer-events: none;
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+// Device frame styling - large, overflows right
+.deviceFrame {
+  position: relative;
+  z-index: 1;
+  width: 150%;
+  min-width: 750px;
+  background: var(--color-surface-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-white-10);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px var(--color-white-5),
+    0 40px 80px -20px var(--color-black-60),
+    0 0 120px var(--color-accent-20);
+
+  // Subtle inner glow
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      var(--color-white-5) 0%,
+      transparent 20%
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+}
+
+// Browser-like header - compact with proportional sizing
+.deviceHeader {
+  display: flex;
+  align-items: center;
+  padding: clamp(4px, 0.6vw, 6px) clamp(8px, 1vw, 10px);
+  background: var(--color-surface-strong);
+  border-bottom: 1px solid var(--color-white-5);
+}
+
+.deviceDots {
+  display: flex;
+  gap: clamp(3px, 0.4vw, 4px);
+
+  span {
+    width: clamp(5px, 0.6vw, 6px);
+    height: clamp(5px, 0.6vw, 6px);
+    border-radius: 50%;
+    background: var(--color-white-15);
+    transition: background 0.2s ease;
+
+    &:first-child {
+      background: #ff5f57;
+    }
+
+    &:nth-child(2) {
+      background: #ffbd2e;
+    }
+
+    &:nth-child(3) {
+      background: #28ca41;
+    }
+  }
+}
+
+// Image container - maintains aspect ratio proportionally
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--color-bg-primary);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+// Controls container - proportionally sized
+.controls {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 10px);
+  z-index: 2;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Play/Pause button - proportionally sized with glow on hover
+.playPauseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(20px, 2.4vw, 24px);
+  height: clamp(20px, 2.4vw, 24px);
+  border-radius: 50%;
+  border: 1px solid var(--color-white-15);
+  background: var(--color-white-5);
+  color: var(--color-white-60);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: var(--color-accent-primary);
+    border-color: var(--color-accent-primary);
+    color: var(--color-bg-primary);
+    box-shadow: 0 0 12px var(--color-accent-30);
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg {
+    flex-shrink: 0;
+    width: clamp(6px, 0.8vw, 8px);
+    height: clamp(6px, 0.8vw, 8px);
+    transition: transform 0.2s ease;
+  }
+
+  &:hover svg {
+    transform: scale(1.1);
+  }
+}
+
+// Progress indicators - proportionally sized
+.indicators {
+  display: flex;
+  gap: clamp(4px, 0.6vw, 6px);
+  align-items: center;
+  height: 12px;
+}
+
+.indicator {
+  position: relative;
+  width: clamp(24px, 3vw, 32px);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-white-15);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    height 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.2s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    height: 6px;
+    background: var(--color-white-25);
+    box-shadow: 0 0 8px var(--color-accent-20);
+  }
+
+  &.active {
+    background: var(--color-white-20);
+
+    &:hover {
+      background: var(--color-white-30);
+    }
+  }
+}
+
+.indicatorProgress {
+  position: absolute;
+  inset: 0;
+  background: var(--color-accent-primary);
+  transform-origin: left center;
+  border-radius: 2px;
+  transition: transform 0.05s linear;
+}
+
+// ==========================================
+// TABLET BREAKPOINT (1024px)
+// ==========================================
+@media (max-width: 1024px) {
+  .showcase {
+    margin-top: 0;
+    align-items: center;
+    width: 100%;
+  }
+
+  .deviceFrame {
+    width: 100%;
+    min-width: unset;
+    max-width: 680px;
+    border-radius: clamp(12px, 2vw, var(--radius-md));
+  }
+
+  .glowOrb {
+    width: 100%;
+    left: 0;
+  }
+
+  .imageContainer {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+// ==========================================
+// MOBILE BREAKPOINT (768px)
+// ==========================================
+@media (max-width: 768px) {
+  .showcase {
+    margin-top: 0;
+    gap: clamp(10px, 2.5vw, 14px);
+    width: 100%;
+  }
+
+  .deviceFrame {
+    max-width: 100%;
+    border-radius: clamp(10px, 2.5vw, 14px);
+    box-shadow:
+      0 0 0 1px var(--color-white-5),
+      0 20px 40px -10px var(--color-black-60),
+      0 0 60px var(--color-accent-15);
+  }
+
+  .deviceHeader {
+    padding: 5px 8px;
+  }
+
+  .deviceDots {
+    gap: 3px;
+
+    span {
+      width: 5px;
+      height: 5px;
+    }
+  }
+
+  // Keep 4:3 aspect ratio on mobile for consistency
+  .imageContainer {
+    aspect-ratio: 4 / 3;
+  }
+
+  .controls {
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .playPauseBtn {
+    width: 22px;
+    height: 22px;
+
+    svg {
+      width: 7px;
+      height: 7px;
+    }
+  }
+
+  .indicator {
+    width: 28px;
+  }
+
+  .glowOrb {
+    filter: blur(40px);
+    opacity: 0.8;
+  }
+}
+
+// ==========================================
+// SMALL MOBILE BREAKPOINT (480px)
+// ==========================================
+@media (max-width: 480px) {
+  .showcase {
+    gap: 10px;
+  }
+
+  .deviceFrame {
+    border-radius: 10px;
+    box-shadow:
+      0 0 0 1px var(--color-white-5),
+      0 16px 32px -8px var(--color-black-60),
+      0 0 40px var(--color-accent-10);
+  }
+
+  .deviceHeader {
+    padding: 4px 6px;
+  }
+
+  .deviceDots {
+    gap: 2px;
+
+    span {
+      width: 4px;
+      height: 4px;
+    }
+  }
+
+  .imageContainer {
+    aspect-ratio: 4 / 3;
+  }
+
+  .controls {
+    gap: 6px;
+  }
+
+  .playPauseBtn {
+    width: 20px;
+    height: 20px;
+
+    svg {
+      width: 6px;
+      height: 6px;
+    }
+  }
+
+  .indicator {
+    width: 24px;
+  }
+
+  .glowOrb {
+    filter: blur(30px);
+    opacity: 0.6;
+  }
+}

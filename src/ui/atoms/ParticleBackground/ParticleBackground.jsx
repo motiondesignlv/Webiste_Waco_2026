@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import styles from './ParticleBackground.module.scss';
 
 // Expanded symbols: 150+ variations including emoji icons
@@ -48,10 +48,11 @@ const SYMBOLS = [
   '⚙', '⚛', '⚑', '⚐', '☰', '☱', '☲', '☳',
   '⌂', '⌘', '⌥', '⌃', '⇧', '⎋', '⏎', '⏏',
   '✉', '☎', '⌚', '⏱', '⏲', '⧗', '⧖',
-  '◎', '◉', '◈', '◇', '◆', '▣', '▢', '▤',,
+  '◎', '◉', '◈', '◇', '◆', '▣', '▢', '▤',
 ];
 
-const PARTICLE_COUNT = 80;
+// Reduced particle count for better performance
+const PARTICLE_COUNT = 40;
 const MOUSE_ATTRACTION_RADIUS = 150;
 const MOUSE_ATTRACTION_STRENGTH = 0.015;
 
@@ -65,6 +66,33 @@ export default function ParticleBackground() {
   const particlesRef = useRef([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const tickerCallbackRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  // Check for reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Intersection Observer to only run animation when visible
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const handleMouseMove = useCallback((e) => {
     const container = containerRef.current;
@@ -82,7 +110,8 @@ export default function ParticleBackground() {
   }, []);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    // Don't initialize if user prefers reduced motion or not visible
+    if (prefersReducedMotion || !isVisible || !containerRef.current) return;
 
     let app = null;
 
@@ -272,7 +301,12 @@ export default function ParticleBackground() {
       }
       particlesRef.current = [];
     };
-  }, [handleMouseMove]);
+  }, [handleMouseMove, prefersReducedMotion, isVisible]);
 
-  return <div ref={containerRef} className={styles.container} />;
+  // If user prefers reduced motion, render nothing
+  if (prefersReducedMotion) {
+    return null;
+  }
+
+  return <div ref={containerRef} className={styles.container} aria-hidden="true" />;
 }

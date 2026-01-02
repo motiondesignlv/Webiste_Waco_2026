@@ -36,7 +36,7 @@ export default function PricingSection({ dictionary }) {
           <div className={styles.features}>
             {(plan.features || []).map((item) => (
               <div key={item} className={styles.feature}>
-                <span className={styles.check}>✓</span>
+                <span className={styles.check} aria-hidden="true">✓</span>
                 <p>{item}</p>
               </div>
             ))}

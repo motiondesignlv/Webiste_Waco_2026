@@ -3,6 +3,7 @@
 import styles from "./NewHero.module.scss";
 import Button from "@/ui/atoms/Button/Button";
 import ParticleBackground from "@/ui/atoms/ParticleBackground/ParticleBackground";
+import HeroShowcase from "./HeroShowcase";
 import { trackLinkClick } from "@/lib/analytics";
 
 export default function NewHero({ dictionary }) {
@@ -18,7 +19,8 @@ export default function NewHero({ dictionary }) {
       <ParticleBackground />
       <div className={styles.overlay} />
       <div className="page-shell">
-        <div className={styles.content}>
+        <div className={styles.heroGrid}>
+          <div className={styles.content}>
           {/* Eyebrow on top visually, but animates after title */}
           <p className={`${styles.eyebrow} ${styles.heroReveal}`} style={{ animationDelay: '0.7s' }}>
             {hero.eyebrow}
@@ -68,6 +70,7 @@ export default function NewHero({ dictionary }) {
                     viewBox="0 0 12 12"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
                   >
                     <path
                       d="M1 11L11 1M11 1H1M11 1V11"
@@ -94,12 +97,18 @@ export default function NewHero({ dictionary }) {
           <div className={`${styles.badges} ${styles.heroReveal}`} style={{ animationDelay: '1.15s' }}>
             {(hero.badges || []).map((badge, i) => (
               <span key={i} className={styles.badge}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M13.5 4.5L6 12L2.5 8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 {badge}
               </span>
             ))}
+          </div>
+          </div>
+
+          {/* App Screenshots Showcase */}
+          <div className={styles.showcaseWrapper}>
+            <HeroShowcase />
           </div>
         </div>
       </div>

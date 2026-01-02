@@ -1,15 +1,6 @@
 @mixin glass-panel {
-  background: radial-gradient(
-      120% 140% at 20% 20%,
-      rgba(109, 241, 255, 0.08),
-      transparent
-    ),
-    radial-gradient(
-      140% 160% at 80% 0%,
-      rgba(102, 179, 255, 0.08),
-      transparent
-    ),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  background: var(--gradient-glass-accent-1), var(--gradient-glass-accent-2),
+    var(--gradient-glass-panel);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-soft);
   border-radius: var(--radius-lg);
@@ -21,7 +12,7 @@
 }
 
 @mixin text-gradient {
-  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -35,11 +26,6 @@
     bottom: -1px;
     width: 100%;
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent
-    );
+    background: var(--gradient-divider);
   }
 }

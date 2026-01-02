@@ -12,12 +12,14 @@ export default function NavBar({ dictionary }) {
           <div className={styles.brand}>
             <img src="/waco3.svg" alt="Waco3.io" className={styles.logo} />
           </div>
-          <div className={styles.actions}>
-            <LanguageSwitcher />
-            <Button as="a" href="#waitlist" variant="primary" size="md">
-              {nav.primaryCta}
-            </Button>
-          </div>
+          <nav className={styles.navigation} aria-label="Main navigation">
+            <div className={styles.actions}>
+              <LanguageSwitcher />
+              <Button as="a" href="#waitlist" variant="primary" size="md">
+                {nav.primaryCta}
+              </Button>
+            </div>
+          </nav>
         </div>
       </div>
     </header>

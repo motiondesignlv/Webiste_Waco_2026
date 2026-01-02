@@ -1,13 +1,18 @@
+'use client';
+
+import { useState } from 'react';
 import ScrollReveal from "@/ui/atoms/ScrollReveal/ScrollReveal";
+import GlowLogo from "./GlowLogo";
 import styles from "./RoleComparison.module.scss";
 
 export default function RoleComparison({ dictionary }) {
   const copy = dictionary?.roleComparison || {};
   const oldWay = copy.oldWay || { features: [] };
   const newWay = copy.newWay || { features: [] };
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="comparison">
       <div className={styles.container}>
         {/* Personal Column */}
         <ScrollReveal className={styles.cardPersonal}>
@@ -29,10 +34,14 @@ export default function RoleComparison({ dictionary }) {
         </ScrollReveal>
 
         {/* Professional Column */}
-        <ScrollReveal className={styles.cardProfessional}>
+        <ScrollReveal
+          className={styles.cardProfessional}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div className={styles.header}>
             <div>
-              <img src="/waco3.svg" alt="Waco3.io" className={styles.logo} />
+              <GlowLogo isHovered={isHovered} />
               <p className={styles.roleSubtitle}>{newWay.subtitle}</p>
             </div>
             <div className={styles.dot} />

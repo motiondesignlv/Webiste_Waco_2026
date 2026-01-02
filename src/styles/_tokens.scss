@@ -1,19 +1,259 @@
+// ==========================================
+// DESIGN TOKENS - CSS CUSTOM PROPERTIES
+// ==========================================
+// This file defines all design tokens for the Waco2026 project.
+// All colors, spacing, typography, and other visual properties
+// should be defined here and referenced throughout components.
+// ==========================================
+
 :root {
-  --bg: #05060f;
-  --bg-soft: #0a1020;
-  --panel: #0f1a2f;
-  --panel-strong: #152137;
-  --accent: #6df1ff;
-  --accent-2: #66b3ff;
-  --muted: #9fb2d9;
-  --text: #e7ecf5;
-  --border: rgba(255, 255, 255, 0.08);
-  --grid: rgba(255, 255, 255, 0.04);
+  // ==========================================
+  // BASE COLORS
+  // ==========================================
+
+  // Pure colors
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  // Dark grey scale
+  --color-grey-900: #111111;
+  --color-grey-800: #222222;
+  --color-grey-700: #333333;
+
+  // Light grey scale
+  --color-grey-100: #f2f2f2;
+  --color-grey-200: #e5e5e5;
+
+  // ==========================================
+  // BACKGROUND COLORS
+  // ==========================================
+
+  --color-bg-primary: #05060f;
+  --color-bg-soft: #0a1020;
+  --color-bg-light: #f2f2f2;
+  --color-bg-light-alt: #e5e5e5;
+  --color-bg-button-dark: #020307;
+
+  // ==========================================
+  // SURFACE/PANEL COLORS
+  // ==========================================
+
+  --color-surface-primary: #0f1a2f;
+  --color-surface-strong: #152137;
+  --color-surface-dark: #111111;
+
+  // ==========================================
+  // ACCENT COLORS
+  // ==========================================
+
+  // Primary accent (cyan)
+  --color-accent-primary: #6df1ff;
+
+  // Secondary accent (blue)
+  --color-accent-secondary: #66b3ff;
+
+  // ==========================================
+  // TEXT COLORS
+  // ==========================================
+
+  --color-text-primary: #e7ecf5;
+  --color-text-muted: #9fb2d9;
+  --color-text-dark: #111111;
+  --color-text-dark-alt: #222222;
+  --color-text-dark-muted: #333333;
+
+  // ==========================================
+  // SEMANTIC COLORS
+  // ==========================================
+
+  --color-warning: #ffc107;
+
+  // ==========================================
+  // GRADIENT BLUES (RoleComparison)
+  // ==========================================
+
+  --color-gradient-blue-light: #2a6090;
+  --color-gradient-blue-mid: #153d5e;
+  --color-gradient-blue-dark: #0a2540;
+
+  // ==========================================
+  // WHITE OPACITY SCALE
+  // ==========================================
+
+  --color-white-1: rgba(255, 255, 255, 0.01);
+  --color-white-2: rgba(255, 255, 255, 0.02);
+  --color-white-3: rgba(255, 255, 255, 0.03);
+  --color-white-4: rgba(255, 255, 255, 0.04);
+  --color-white-5: rgba(255, 255, 255, 0.05);
+  --color-white-8: rgba(255, 255, 255, 0.08);
+  --color-white-10: rgba(255, 255, 255, 0.1);
+  --color-white-15: rgba(255, 255, 255, 0.15);
+  --color-white-20: rgba(255, 255, 255, 0.2);
+  --color-white-30: rgba(255, 255, 255, 0.3);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-white-60: rgba(255, 255, 255, 0.6);
+  --color-white-70: rgba(255, 255, 255, 0.7);
+  --color-white-80: rgba(255, 255, 255, 0.8);
+  --color-white-85: rgba(255, 255, 255, 0.85);
+  --color-white-90: rgba(255, 255, 255, 0.9);
+
+  // ==========================================
+  // BLACK OPACITY SCALE
+  // ==========================================
+
+  --color-black-10: rgba(0, 0, 0, 0.1);
+  --color-black-20: rgba(0, 0, 0, 0.2);
+  --color-black-30: rgba(0, 0, 0, 0.3);
+  --color-black-35: rgba(0, 0, 0, 0.35);
+  --color-black-40: rgba(0, 0, 0, 0.4);
+  --color-black-45: rgba(0, 0, 0, 0.45);
+  --color-black-50: rgba(0, 0, 0, 0.5);
+  --color-black-60: rgba(0, 0, 0, 0.6);
+  --color-black-70: rgba(0, 0, 0, 0.7);
+  --color-black-80: rgba(0, 0, 0, 0.8);
+  --color-black-85: rgba(0, 0, 0, 0.85);
+
+  // ==========================================
+  // ACCENT (CYAN) OPACITY SCALE
+  // ==========================================
+
+  --color-accent-1: rgba(109, 241, 255, 0.01);
+  --color-accent-2: rgba(109, 241, 255, 0.02);
+  --color-accent-3: rgba(109, 241, 255, 0.03);
+  --color-accent-5: rgba(109, 241, 255, 0.05);
+  --color-accent-8: rgba(109, 241, 255, 0.08);
+  --color-accent-10: rgba(109, 241, 255, 0.1);
+  --color-accent-15: rgba(109, 241, 255, 0.15);
+  --color-accent-20: rgba(109, 241, 255, 0.2);
+  --color-accent-30: rgba(109, 241, 255, 0.3);
+  --color-accent-36: rgba(109, 241, 255, 0.36);
+
+  // ==========================================
+  // ACCENT-2 (BLUE) OPACITY SCALE
+  // ==========================================
+
+  --color-accent2-8: rgba(102, 179, 255, 0.08);
+  --color-accent2-10: rgba(102, 179, 255, 0.1);
+
+  // ==========================================
+  // BACKGROUND OPACITY SCALE
+  // ==========================================
+
+  --color-bg-10: rgba(5, 6, 15, 0.1);
+  --color-bg-20: rgba(5, 6, 15, 0.2);
+  --color-bg-30: rgba(5, 6, 15, 0.3);
+  --color-bg-40: rgba(5, 6, 15, 0.4);
+  --color-bg-60: rgba(5, 6, 15, 0.6);
+  --color-bg-64: rgba(5, 6, 15, 0.64);
+  --color-bg-70: rgba(5, 6, 15, 0.7);
+  --color-bg-90: rgba(5, 6, 15, 0.9);
+  --color-bg-95: rgba(5, 6, 15, 0.95);
+  --color-bg-100: rgba(5, 6, 15, 1);
+
+  // ==========================================
+  // SURFACE OPACITY SCALE
+  // ==========================================
+
+  --color-surface-40: rgba(15, 26, 47, 0.4);
+
+  // ==========================================
+  // WARNING OPACITY SCALE
+  // ==========================================
+
+  --color-warning-8: rgba(255, 193, 7, 0.08);
+  --color-warning-15: rgba(255, 193, 7, 0.15);
+  --color-warning-30: rgba(255, 193, 7, 0.3);
+
+  // ==========================================
+  // GRADIENTS
+  // ==========================================
+
+  // Primary gradients
+  --gradient-accent: linear-gradient(120deg, var(--color-accent-primary), var(--color-accent-secondary));
+  --gradient-text: linear-gradient(120deg, var(--color-accent-primary), var(--color-accent-secondary));
+
+  // Glass panel gradients
+  --gradient-glass-panel: linear-gradient(145deg, var(--color-white-2), var(--color-white-1));
+  --gradient-glass-accent-1: radial-gradient(120% 140% at 20% 20%, var(--color-accent-8), transparent);
+  --gradient-glass-accent-2: radial-gradient(140% 160% at 80% 0%, var(--color-accent2-8), transparent);
+
+  // Body/page background gradients
+  --gradient-body-accent-1: radial-gradient(80% 80% at 20% 20%, var(--color-accent-8), transparent);
+  --gradient-body-accent-2: radial-gradient(90% 90% at 80% 10%, var(--color-accent2-8), transparent);
+
+  // Hero gradients
+  --gradient-hero-accent-1: radial-gradient(circle at 70% 40%, var(--color-accent-15), transparent 40%);
+  --gradient-hero-accent-2: radial-gradient(circle at 30% 60%, var(--color-accent2-10), transparent 50%);
+
+  // Overlay gradients
+  --gradient-overlay-left: linear-gradient(to right, var(--color-black-40), transparent);
+  --gradient-overlay-bottom: linear-gradient(180deg, var(--color-bg-20) 0%, var(--color-bg-40) 50%, var(--color-bg-95) 100%);
+
+  // Navbar gradient
+  --gradient-navbar: linear-gradient(180deg, var(--color-bg-90), var(--color-bg-64));
+
+  // Feature card gradient (RoleComparison)
+  --gradient-professional: linear-gradient(135deg, var(--color-gradient-blue-light) 0%, var(--color-gradient-blue-mid) 35%, var(--color-gradient-blue-dark) 70%, var(--color-black) 100%);
+
+  // Divider gradient
+  --gradient-divider: linear-gradient(90deg, transparent, var(--color-white-20), transparent);
+
+  // Social proof bar gradient
+  --gradient-social-proof: linear-gradient(90deg, var(--color-accent-10) 0%, var(--color-accent2-10) 50%, var(--color-accent-10) 100%);
+
+  // Card content gradient
+  --gradient-card-content: linear-gradient(180deg, rgba(26, 26, 26, 1), rgba(17, 17, 17, 1));
+
+  // Video/image fade gradients
+  --gradient-fade-left: linear-gradient(to right, var(--color-bg-primary) 0%, var(--color-bg-60) 15%, transparent 40%);
+  --gradient-fade-vertical: linear-gradient(to bottom, var(--color-bg-primary) 0%, transparent 30%, transparent 70%, var(--color-bg-primary) 100%);
+
+  // Timeline connector gradient
+  --gradient-timeline: linear-gradient(to bottom, var(--color-accent-primary), var(--color-accent-20));
+
+  // Grid pattern
+  --gradient-grid-h: linear-gradient(var(--color-white-4) 1px, transparent 1px);
+  --gradient-grid-v: linear-gradient(90deg, var(--color-white-4) 1px, transparent 1px);
+  --gradient-grid-mask: radial-gradient(circle at center, var(--color-black-45), transparent 70%);
+
+  // ==========================================
+  // SHADOWS
+  // ==========================================
+
+  --shadow-soft: 0 16px 44px var(--color-black-35), 0 0 0 1px var(--color-white-2);
+  --shadow-strong: 0 24px 72px var(--color-black-45), 0 0 0 1px var(--color-white-3);
+  --shadow-glow-accent: 0 10px 40px var(--color-accent-30);
+  --shadow-glow-accent-strong: 0 14px 60px var(--color-accent-36);
+  --shadow-card-hover: 0 32px 64px var(--color-black-35), 0 0 40px var(--color-accent-8);
+  --shadow-dropdown: 0 8px 24px var(--color-black-40);
+
+  // ==========================================
+  // LEGACY ALIASES (Backwards Compatibility)
+  // ==========================================
+
+  --bg: var(--color-bg-primary);
+  --bg-soft: var(--color-bg-soft);
+  --panel: var(--color-surface-primary);
+  --panel-strong: var(--color-surface-strong);
+  --accent: var(--color-accent-primary);
+  --accent-2: var(--color-accent-secondary);
+  --muted: var(--color-text-muted);
+  --text: var(--color-text-primary);
+  --border: var(--color-white-8);
+  --grid: var(--color-white-4);
+
+  // ==========================================
+  // BORDER RADIUS
+  // ==========================================
+
   --radius-lg: 26px;
   --radius-md: 18px;
   --radius-sm: 12px;
-  --shadow-soft: 0 16px 44px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.02);
-  --shadow-strong: 0 24px 72px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.03);
+
+  // ==========================================
+  // SPACING
+  // ==========================================
+
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -23,6 +263,11 @@
   --space-7: 40px;
   --space-8: 56px;
   --max-width: 1440px;
+
+  // ==========================================
+  // TYPOGRAPHY
+  // ==========================================
+
   --text-display: clamp(48px, 7vw, 78px);
   --text-xl: clamp(34px, 5vw, 54px);
   --text-lg: clamp(24px, 3.4vw, 34px);

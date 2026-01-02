@@ -1,8 +1,8 @@
 @use "../../../styles/mixins";
 
 .section {
-  background-color: #f2f2f2; // Light grey background
-  color: #111;
+  background-color: var(--color-grey-100); // Light grey background
+  color: var(--color-grey-900);
   padding: clamp(60px, 10vw, 120px) 0;
 }
 
@@ -21,11 +21,11 @@
 
 .cta {
   display: inline-block;
-  
+
   // Custom button style overrides if needed to match black button with white text
   .button {
-    background-color: #111 !important;
-    color: #fff !important;
+    background-color: var(--color-grey-900) !important;
+    color: var(--color-white) !important;
     padding: 16px 32px !important;
     border-radius: 999px !important;
   }
@@ -35,7 +35,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid var(--color-black-10);
   padding-top: 60px;
 
   @media (max-width: 1024px) {
@@ -81,8 +81,8 @@
 .footnote {
   margin-top: clamp(40px, 8vw, 80px);
   padding-top: clamp(24px, 4vw, 40px);
-  border-top: 1px solid rgba(0,0,0,0.1);
+  border-top: 1px solid var(--color-black-10);
   font-size: clamp(14px, 2vw, 16px);
-  color: rgba(0,0,0,0.6);
+  color: var(--color-black-60);
   text-align: center;
 }

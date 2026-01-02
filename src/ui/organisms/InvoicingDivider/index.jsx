@@ -23,7 +23,7 @@ export default function InvoicingDivider({ dictionary }) {
   const content = dictionary?.invoicingDivider || {};
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="invoicing">
       <div className="page-shell">
         <ScrollReveal className={styles.divider}>
           <div className={styles.iconWrapper}>{icon}</div>

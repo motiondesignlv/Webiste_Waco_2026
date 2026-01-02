@@ -1,11 +1,12 @@
 'use client';
 
+import { memo } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 import { trackButtonClick } from "@/lib/analytics";
 import styles from "./Button.module.scss";
 
-export default function Button({
+const Button = memo(function Button({
   as = "button",
   href,
   children,
@@ -48,4 +49,6 @@ export default function Button({
       {icon ? <span className={styles.icon}>{icon}</span> : null}
     </button>
   );
-}
+});
+
+export default Button;

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useMemo, useCallback } from "react";
 import en from "@/messages/en.js";
 import es from "@/messages/es.js";
 
@@ -38,21 +38,21 @@ export function LocaleProvider({ children }) {
     setMounted(true);
   }, []);
 
-  const setLocale = (newLocale) => {
+  const setLocale = useCallback((newLocale) => {
     if (supportedLocales.includes(newLocale)) {
       document.cookie = `lang=${newLocale}; path=/; max-age=31536000; samesite=lax`;
       setLocaleState(newLocale);
     }
-  };
+  }, []);
 
   const dictionary = dictionaries[locale] || dictionaries[defaultLocale];
 
-  // Prevent hydration mismatch by rendering with default locale until mounted
-  const value = {
+  // Memoize the context value to prevent unnecessary re-renders
+  const value = useMemo(() => ({
     locale: mounted ? locale : defaultLocale,
     dictionary: mounted ? dictionary : dictionaries[defaultLocale],
     setLocale,
-  };
+  }), [mounted, locale, dictionary, setLocale]);
 
   return (
     <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>

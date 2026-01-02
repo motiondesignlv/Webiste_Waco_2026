@@ -8,7 +8,7 @@ export default function ConditionGrid({ dictionary }) {
   const title = copy.title || [];
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="conditions">
       <div className="page-shell">
         <ScrollReveal className={styles.header}>
           <h2 className={styles.title}>
@@ -17,7 +17,7 @@ export default function ConditionGrid({ dictionary }) {
           </h2>
           <div className={styles.cta}>
             <Button as="a" href="#waitlist" variant="primary" className={styles.button} icon={
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             }>
