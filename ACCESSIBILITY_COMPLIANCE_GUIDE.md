@@ -30,6 +30,7 @@
 This document provides a comprehensive accessibility audit and implementation guide for the Waco2026 website. The audit covers WCAG 2.2 Level AA compliance requirements, keyboard navigation, screen reader compatibility, responsive design, and image optimization.
 
 ### Current Status
+
 - **Semantic HTML:** Good foundation with proper landmarks
 - **Keyboard Navigation:** Excellent in LanguageSwitcher, needs work elsewhere
 - **ARIA Implementation:** Partial - needs completion
@@ -39,12 +40,13 @@ This document provides a comprehensive accessibility audit and implementation gu
 - **Video:** Critical - missing captions and transcripts
 
 ### Priority Summary
-| Priority | Issues | Estimated Effort |
-|----------|--------|------------------|
-| Critical | 8 | 16-24 hours |
-| High | 12 | 12-16 hours |
-| Medium | 15 | 8-12 hours |
-| Good to Have | 10 | 8-12 hours |
+
+| Priority     | Issues | Estimated Effort |
+| ------------ | ------ | ---------------- |
+| Critical     | 8      | 16-24 hours      |
+| High         | 12     | 12-16 hours      |
+| Medium       | 15     | 8-12 hours       |
+| Good to Have | 10     | 8-12 hours       |
 
 ---
 
@@ -55,23 +57,25 @@ This document provides a comprehensive accessibility audit and implementation gu
 Based on [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/) and [WebAIM Checklist](https://webaim.org/standards/wcag/checklist):
 
 #### Four Principles (POUR)
+
 1. **Perceivable** - Information must be presentable in ways users can perceive
 2. **Operable** - Interface components must be operable
 3. **Understandable** - Information and operation must be understandable
 4. **Robust** - Content must be robust enough for assistive technologies
 
 #### WCAG 2.2 New Success Criteria
-| Criterion | Level | Status |
-|-----------|-------|--------|
-| 2.4.11 Focus Not Obscured (Minimum) | AA | Needs Review |
-| 2.4.12 Focus Not Obscured (Enhanced) | AAA | Optional |
-| 2.4.13 Focus Appearance | AAA | Optional |
-| 2.5.7 Dragging Movements | AA | N/A (no drag features) |
-| 2.5.8 Target Size (Minimum) | AA | Needs Review |
-| 3.2.6 Consistent Help | A | N/A |
-| 3.3.7 Redundant Entry | A | N/A |
-| 3.3.8 Accessible Authentication (Minimum) | AA | N/A |
-| 3.3.9 Accessible Authentication (Enhanced) | AAA | Optional |
+
+| Criterion                                  | Level | Status                 |
+| ------------------------------------------ | ----- | ---------------------- |
+| 2.4.11 Focus Not Obscured (Minimum)        | AA    | Needs Review           |
+| 2.4.12 Focus Not Obscured (Enhanced)       | AAA   | Optional               |
+| 2.4.13 Focus Appearance                    | AAA   | Optional               |
+| 2.5.7 Dragging Movements                   | AA    | N/A (no drag features) |
+| 2.5.8 Target Size (Minimum)                | AA    | Needs Review           |
+| 3.2.6 Consistent Help                      | A     | N/A                    |
+| 3.3.7 Redundant Entry                      | A     | N/A                    |
+| 3.3.8 Accessible Authentication (Minimum)  | AA    | N/A                    |
+| 3.3.9 Accessible Authentication (Enhanced) | AAA   | Optional               |
 
 ---
 
@@ -87,24 +91,21 @@ Based on [W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/) and [WebAIM Checklist](ht
 Auto-playing videos lack captions and transcripts.
 
 **Files Affected:**
+
 - `src/ui/organisms/AIProposalSection/index.jsx` (lines 51-59)
 - `src/ui/organisms/ShareSection/index.jsx` (lines 56-64)
 - `src/ui/organisms/EngagementSection/index.jsx` (lines 52-61)
 
 **Current Code:**
+
 ```jsx
-<video
-  autoPlay
-  muted
-  loop
-  playsInline
-  className={styles.video}
->
+<video autoPlay muted loop playsInline className={styles.video}>
   <source src={videoSources[activeFeature]} type="video/mp4" />
 </video>
 ```
 
 **Solution:**
+
 ```jsx
 <div className={styles.videoWrapper}>
   <video
@@ -131,6 +132,7 @@ Auto-playing videos lack captions and transcripts.
 ```
 
 **Additional Requirements:**
+
 - Create `.vtt` caption files for each video
 - Add `aria-describedby` linking to text description
 - Consider adding audio descriptions for complex visuals
@@ -146,6 +148,7 @@ Auto-playing videos lack captions and transcripts.
 CSS `backgroundImage` cannot have alt text, making images inaccessible to screen readers.
 
 **Files Affected:**
+
 - `src/ui/organisms/FeatureHighlight/FeatureHighlight.jsx` (line 52)
 - `src/ui/organisms/AIProposalSection/index.jsx` (line 71)
 - `src/ui/organisms/EngagementSection/index.jsx` (line 72)
@@ -153,6 +156,7 @@ CSS `backgroundImage` cannot have alt text, making images inaccessible to screen
 - `src/ui/organisms/ShareSection/index.jsx` (line 76)
 
 **Current Code:**
+
 ```jsx
 <div
   className={styles.cardImage}
@@ -161,6 +165,7 @@ CSS `backgroundImage` cannot have alt text, making images inaccessible to screen
 ```
 
 **Solution Option A - Add ARIA Label:**
+
 ```jsx
 <div
   className={styles.cardImage}
@@ -171,6 +176,7 @@ CSS `backgroundImage` cannot have alt text, making images inaccessible to screen
 ```
 
 **Solution Option B - Replace with img Element:**
+
 ```jsx
 <div className={styles.cardImageWrapper}>
   <img
@@ -183,6 +189,7 @@ CSS `backgroundImage` cannot have alt text, making images inaccessible to screen
 ```
 
 **Solution Option C - Use Picture Element (Best for Optimization):**
+
 ```jsx
 <div className={styles.cardImageWrapper}>
   <picture>
@@ -211,6 +218,7 @@ CTASection has iframe placeholder with `src="about:blank"`.
 **File:** `src/ui/organisms/CTASection/CTASection.jsx` (line 31)
 
 **Current Code:**
+
 ```jsx
 <iframe
   src="about:blank"
@@ -221,18 +229,23 @@ CTASection has iframe placeholder with `src="about:blank"`.
 ```
 
 **Solution - Native Form Implementation:**
+
 ```jsx
 <form
   className={styles.form}
   onSubmit={handleSubmit}
   aria-labelledby="cta-form-title"
 >
-  <h3 id="cta-form-title" className="sr-only">Join the Waitlist</h3>
+  <h3 id="cta-form-title" className="sr-only">
+    Join the Waitlist
+  </h3>
 
   <div className={styles.formGroup}>
     <label htmlFor="cta-email" className={styles.label}>
       Email Address
-      <span className={styles.required} aria-hidden="true">*</span>
+      <span className={styles.required} aria-hidden="true">
+        *
+      </span>
     </label>
     <input
       id="cta-email"
@@ -296,7 +309,7 @@ CTASection has iframe placeholder with `src="about:blank"`.
     disabled={isSubmitting}
     aria-busy={isSubmitting}
   >
-    {isSubmitting ? 'Joining...' : 'Join Waitlist'}
+    {isSubmitting ? "Joining..." : "Join Waitlist"}
   </button>
 
   <div aria-live="polite" aria-atomic="true" className="sr-only">
@@ -316,6 +329,7 @@ CTASection has iframe placeholder with `src="about:blank"`.
 Many interactive elements lack visible focus indicators.
 
 **Files Affected:**
+
 - `src/ui/organisms/SimpleFooter/SimpleFooter.jsx` - Footer links
 - `src/ui/organisms/BlogCard/BlogCard.jsx` - Card links
 - `src/ui/organisms/NewHero/NewHero.jsx` - Secondary CTA link
@@ -324,6 +338,7 @@ Many interactive elements lack visible focus indicators.
 **Solution - Global Focus Styles:**
 
 Add to `src/app/globals.scss`:
+
 ```scss
 /* =================================
    FOCUS MANAGEMENT - WCAG 2.4.7
@@ -398,11 +413,13 @@ Muted text color `#9fb2d9` on background `#05060f` may not meet 4.5:1 contrast r
 **File:** `src/styles/_tokens.scss` (line 60)
 
 **Current:**
+
 ```scss
---color-text-muted: #9fb2d9;  // ~6.5:1 contrast - PASSES but marginal
+--color-text-muted: #9fb2d9; // ~6.5:1 contrast - PASSES but marginal
 ```
 
 **Analysis:**
+
 - `#9fb2d9` on `#05060f` = ~6.5:1 contrast ratio
 - PASSES WCAG AA for normal text (4.5:1 required)
 - PASSES WCAG AA for large text (3:1 required)
@@ -410,8 +427,9 @@ Muted text color `#9fb2d9` on background `#05060f` may not meet 4.5:1 contrast r
 
 **Recommendation:**
 For enhanced accessibility, consider:
+
 ```scss
---color-text-muted: #b8c9e6;  // ~8.5:1 contrast - PASSES AAA
+--color-text-muted: #b8c9e6; // ~8.5:1 contrast - PASSES AAA
 ```
 
 **Additional Contrast Issues to Check:**
@@ -434,6 +452,7 @@ For enhanced accessibility, consider:
 Some interactive elements may not meet 24x24 CSS pixel minimum.
 
 **Areas to Check:**
+
 - Footer social links
 - Language switcher dropdown options
 - Navigation links on mobile
@@ -464,7 +483,7 @@ a {
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: -8px;
   }
@@ -483,6 +502,7 @@ Missing `.sr-only` utility class definition in globals.
 
 **Solution:**
 Add to `src/app/globals.scss`:
+
 ```scss
 /* Screen Reader Only - Visually hidden but accessible */
 .sr-only {
@@ -522,11 +542,13 @@ Page language should update when locale changes.
 **File:** `src/app/layout.js`
 
 **Current Code:**
+
 ```jsx
 <html lang="en">
 ```
 
 **Solution:**
+
 ```jsx
 // In layout.js - Use dynamic lang attribute
 export default function RootLayout({ children }) {
@@ -539,9 +561,9 @@ export default function RootLayout({ children }) {
 
 // Create a client component to update lang
 // src/components/LanguageUpdater.jsx
-'use client';
-import { useEffect } from 'react';
-import { useLocale } from '@/lib/LocaleProvider';
+("use client");
+import { useEffect } from "react";
+import { useLocale } from "@/lib/LocaleProvider";
 
 export function LanguageUpdater() {
   const { locale } = useLocale();
@@ -566,18 +588,22 @@ export function LanguageUpdater() {
 Sections without proper labeling for screen reader navigation.
 
 **Files Affected:**
+
 - `src/ui/organisms/FeatureHighlight/FeatureHighlight.jsx`
 - `src/ui/organisms/ProblemSection/ProblemSection.jsx`
 - `src/ui/organisms/SocialProofBar/SocialProofBar.jsx`
 
 **Solution:**
+
 ```jsx
 <section
   className={styles.section}
   id="features"
   aria-labelledby="features-title"
 >
-  <h2 id="features-title" className={styles.title}>{copy.title}</h2>
+  <h2 id="features-title" className={styles.title}>
+    {copy.title}
+  </h2>
   {/* Content */}
 </section>
 ```
@@ -594,17 +620,18 @@ Footer SVG glitch animation may cause accessibility issues.
 **File:** `src/ui/organisms/SimpleFooter/SimpleFooter.jsx` (lines 30-43)
 
 **Solution:**
+
 ```jsx
 // Wrap animation in prefers-reduced-motion check
 const GlitchLogo = () => {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mq.matches);
     const handler = (e) => setReducedMotion(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   if (reducedMotion) {
@@ -631,6 +658,7 @@ Secondary CTA link in hero has unclear purpose.
 **File:** `src/ui/organisms/NewHero/NewHero.jsx` (lines 86-93)
 
 **Current:**
+
 ```jsx
 <a href="#demo" className={styles.secondaryCta}>
   {hero.secondaryCta} →
@@ -638,6 +666,7 @@ Secondary CTA link in hero has unclear purpose.
 ```
 
 **Solution:**
+
 ```jsx
 <a
   href="#demo"
@@ -659,6 +688,7 @@ Secondary CTA link in hero has unclear purpose.
 No error handling or validation feedback in forms.
 
 **Solution:**
+
 ```jsx
 // Error state management
 const [errors, setErrors] = useState({});
@@ -684,11 +714,11 @@ const FieldError = ({ id, message }) => (
   <input
     id="email"
     type="email"
-    aria-invalid={errors.email ? 'true' : 'false'}
-    aria-describedby={errors.email ? 'email-error' : undefined}
+    aria-invalid={errors.email ? "true" : "false"}
+    aria-describedby={errors.email ? "email-error" : undefined}
   />
   {errors.email && <FieldError id="email-error" message={errors.email} />}
-</div>
+</div>;
 ```
 
 ---
@@ -702,6 +732,7 @@ Navigation should be consistent across all pages.
 
 **Solution:**
 Ensure NavBar component is used identically on:
+
 - Homepage (`src/app/page.js`)
 - Blog listing (`src/app/blog/page.js`)
 - Blog posts (`src/app/blog/[slug]/page.js`)
@@ -719,6 +750,7 @@ Blog cards in grid lack proper heading structure.
 **File:** `src/app/blog/page.js`
 
 **Solution:**
+
 ```jsx
 <section aria-labelledby="blog-title">
   <h1 id="blog-title">{copy.title}</h1>
@@ -743,6 +775,7 @@ Blog cards in grid lack proper heading structure.
 Form fields missing autocomplete attributes.
 
 **Solution:**
+
 ```jsx
 // Email field
 <input type="email" autoComplete="email" />
@@ -770,16 +803,18 @@ Form fields missing autocomplete attributes.
 Ensure unique, descriptive page titles.
 
 **Files to Check:**
+
 - `src/app/layout.js` - Default metadata
 - `src/app/blog/[slug]/page.js` - Dynamic titles
 
 **Solution:**
+
 ```jsx
 // In layout.js
 export const metadata = {
   title: {
-    template: '%s | Waco3.io',
-    default: 'Waco3.io - AI-Powered Proposal Software',
+    template: "%s | Waco3.io",
+    default: "Waco3.io - AI-Powered Proposal Software",
   },
 };
 
@@ -803,6 +838,7 @@ export async function generateMetadata({ params }) {
 Ensure text can be resized to 200% without loss of content.
 
 **Solution:**
+
 ```scss
 /* Use relative units for all text */
 html {
@@ -814,9 +850,15 @@ body {
   line-height: 1.5;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
-h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
 
 /* Avoid fixed heights that would clip text */
 .container {
@@ -835,6 +877,7 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
 Content should reflow at 320px width without horizontal scrolling.
 
 **Solution:**
+
 ```scss
 /* Ensure content reflows properly */
 .page-shell {
@@ -845,7 +888,9 @@ Content should reflow at 320px width without horizontal scrolling.
 }
 
 /* Prevent horizontal overflow */
-img, video, iframe {
+img,
+video,
+iframe {
   max-width: 100%;
   height: auto;
 }
@@ -878,12 +923,14 @@ table {
 Content must be readable with increased text spacing.
 
 **Test Requirements:**
+
 - Line height: 1.5x font size
 - Paragraph spacing: 2x font size
 - Letter spacing: 0.12x font size
 - Word spacing: 0.16x font size
 
 **Solution:**
+
 ```scss
 /* Allow user stylesheets to override */
 body {
@@ -893,7 +940,9 @@ body {
 }
 
 /* Don't set fixed heights on text containers */
-p, li, dd {
+p,
+li,
+dd {
   max-width: 70ch;
   overflow-wrap: break-word;
 }
@@ -909,6 +958,7 @@ p, li, dd {
 Dynamic status updates need ARIA live regions.
 
 **Solution:**
+
 ```jsx
 // Success message
 <div
@@ -955,6 +1005,7 @@ CSS animations should respect prefers-reduced-motion.
 **File:** `src/ui/organisms/NewHero/NewHero.module.scss`
 
 **Solution:**
+
 ```scss
 @keyframes wordReveal {
   from {
@@ -988,6 +1039,7 @@ CSS animations should respect prefers-reduced-motion.
 Ensure logical tab order throughout the page.
 
 **Solution:**
+
 ```jsx
 // Avoid positive tabindex values
 // BAD:
@@ -1012,6 +1064,7 @@ Ensure logical tab order throughout the page.
 Provide multiple ways to locate pages.
 
 **Solution:**
+
 - Site map page
 - Search functionality
 - Table of contents for long content
@@ -1047,6 +1100,7 @@ All sections should have descriptive headings.
 
 **Solution:**
 Add headings to sections that lack them, using sr-only class if visual heading not desired:
+
 ```jsx
 <section aria-labelledby="social-proof-heading">
   <h2 id="social-proof-heading" className="sr-only">
@@ -1088,6 +1142,7 @@ Functionality triggered by device motion must have UI alternatives.
 Visible labels must match accessible names.
 
 **Check:**
+
 ```jsx
 // BAD - visible text doesn't match aria-label
 <button aria-label="Submit form">Send</button>
@@ -1109,6 +1164,7 @@ Visible labels must match accessible names.
 Tooltips and popups must be dismissible, hoverable, and persistent.
 
 **Solution:**
+
 ```jsx
 const Tooltip = ({ content, children }) => {
   const [visible, setVisible] = useState(false);
@@ -1153,6 +1209,7 @@ const Tooltip = ({ content, children }) => {
 Ensure valid HTML with no duplicate IDs.
 
 **Testing:**
+
 ```bash
 # Use W3C validator
 npx html-validate out/**/*.html
@@ -1171,6 +1228,7 @@ npx html-validate out/**/*.html
 Custom controls need proper ARIA.
 
 **Current Implementation:**
+
 - LanguageSwitcher: EXCELLENT - proper listbox pattern
 - QuickAnswers: GOOD - proper accordion pattern
 - HowItWorks carousel: GOOD - has pause control
@@ -1196,6 +1254,7 @@ Avoid images containing text.
 UI components and graphics need 3:1 contrast ratio.
 
 **Check:**
+
 - Form field borders
 - Button outlines
 - Icons
@@ -1211,6 +1270,7 @@ UI components and graphics need 3:1 contrast ratio.
 Content should work in both portrait and landscape.
 
 **Solution:**
+
 ```scss
 /* Don't restrict orientation */
 @media screen and (orientation: portrait) {
@@ -1232,6 +1292,7 @@ Content should work in both portrait and landscape.
 Same functionality should be consistently identified.
 
 **Check:**
+
 - "Join Waitlist" buttons use same text throughout
 - Navigation links consistent across pages
 - Icons used consistently
@@ -1246,13 +1307,14 @@ Same functionality should be consistently identified.
 Provide suggestions for correcting errors.
 
 **Solution:**
+
 ```jsx
 const validateEmail = (email) => {
   if (!email) {
-    return 'Email is required';
+    return "Email is required";
   }
-  if (!email.includes('@')) {
-    return 'Please enter a valid email address (e.g., name@example.com)';
+  if (!email.includes("@")) {
+    return "Please enter a valid email address (e.g., name@example.com)";
   }
   return null;
 };
@@ -1265,6 +1327,7 @@ const validateEmail = (email) => {
 ### GOOD-001: Skip to Table of Contents
 
 Add additional skip link for long pages:
+
 ```jsx
 <a href="#toc" className="skip-link">Skip to table of contents</a>
 <a href="#main-content" className="skip-link">Skip to main content</a>
@@ -1275,12 +1338,19 @@ Add additional skip link for long pages:
 ### GOOD-002: Landmark Role Summary
 
 Add landmark summary for screen readers:
+
 ```jsx
 <nav aria-label="Page sections">
   <ul>
-    <li><a href="#hero">Hero</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#pricing">Pricing</a></li>
+    <li>
+      <a href="#hero">Hero</a>
+    </li>
+    <li>
+      <a href="#features">Features</a>
+    </li>
+    <li>
+      <a href="#pricing">Pricing</a>
+    </li>
     {/* etc */}
   </ul>
 </nav>
@@ -1352,6 +1422,7 @@ Use plain language where possible. Consider adding glossary for technical terms.
 **WCAG:** 3.1.6 Pronunciation - Level AAA
 
 For uncommon words, provide pronunciation guide:
+
 ```jsx
 <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
 ```
@@ -1363,6 +1434,7 @@ For uncommon words, provide pronunciation guide:
 **WCAG:** 2.2.6 Timeouts - Level AAA
 
 If forms have session timeouts, warn users:
+
 ```jsx
 <div role="alert" aria-live="assertive">
   Your session will expire in 5 minutes.
@@ -1375,16 +1447,17 @@ If forms have session timeouts, warn users:
 ### GOOD-008: Animation Control
 
 Add global animation toggle:
+
 ```jsx
 const AnimationContext = createContext({
   animationsEnabled: true,
-  toggleAnimations: () => {}
+  toggleAnimations: () => {},
 });
 
 // Settings panel
 <button onClick={toggleAnimations}>
-  {animationsEnabled ? 'Disable' : 'Enable'} Animations
-</button>
+  {animationsEnabled ? "Disable" : "Enable"} Animations
+</button>;
 ```
 
 ---
@@ -1392,12 +1465,13 @@ const AnimationContext = createContext({
 ### GOOD-009: Dark/Light Mode Toggle
 
 Provide explicit theme toggle:
+
 ```jsx
 <button
   onClick={toggleTheme}
-  aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+  aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
 >
-  {isDark ? '☀️' : '🌙'}
+  {isDark ? "☀️" : "🌙"}
 </button>
 ```
 
@@ -1406,16 +1480,26 @@ Provide explicit theme toggle:
 ### GOOD-010: Font Size Controls
 
 Allow users to adjust font size:
+
 ```jsx
 const FontSizeControls = () => (
   <div role="group" aria-label="Font size controls">
-    <button onClick={() => setFontSize('small')} aria-pressed={fontSize === 'small'}>
+    <button
+      onClick={() => setFontSize("small")}
+      aria-pressed={fontSize === "small"}
+    >
       A<span className="sr-only"> - Small text</span>
     </button>
-    <button onClick={() => setFontSize('medium')} aria-pressed={fontSize === 'medium'}>
+    <button
+      onClick={() => setFontSize("medium")}
+      aria-pressed={fontSize === "medium"}
+    >
       A<span className="sr-only"> - Medium text</span>
     </button>
-    <button onClick={() => setFontSize('large')} aria-pressed={fontSize === 'large'}>
+    <button
+      onClick={() => setFontSize("large")}
+      aria-pressed={fontSize === "large"}
+    >
       A<span className="sr-only"> - Large text</span>
     </button>
   </div>
@@ -1428,26 +1512,27 @@ const FontSizeControls = () => (
 
 ### Current Keyboard Support
 
-| Component | Key | Action | Status |
-|-----------|-----|--------|--------|
-| Skip Link | Tab | Focus skip link | ✅ Working |
-| Skip Link | Enter | Skip to main content | ✅ Working |
-| LanguageSwitcher | Tab | Focus trigger | ✅ Working |
-| LanguageSwitcher | Enter/Space | Open dropdown | ✅ Working |
-| LanguageSwitcher | Arrow Up/Down | Navigate options | ✅ Working |
-| LanguageSwitcher | Escape | Close dropdown | ✅ Working |
-| FAQ Accordion | Tab | Focus buttons | ✅ Working |
-| FAQ Accordion | Enter/Space | Toggle panel | ✅ Working |
-| Carousel | Tab | Focus pause button | ✅ Working |
-| Carousel | Enter | Toggle pause/play | ✅ Working |
-| Buttons | Tab | Focus | ✅ Working |
-| Buttons | Enter/Space | Activate | ✅ Working |
-| Links | Tab | Focus | ⚠️ Missing visible focus |
-| Links | Enter | Navigate | ✅ Working |
+| Component        | Key           | Action               | Status                   |
+| ---------------- | ------------- | -------------------- | ------------------------ |
+| Skip Link        | Tab           | Focus skip link      | ✅ Working               |
+| Skip Link        | Enter         | Skip to main content | ✅ Working               |
+| LanguageSwitcher | Tab           | Focus trigger        | ✅ Working               |
+| LanguageSwitcher | Enter/Space   | Open dropdown        | ✅ Working               |
+| LanguageSwitcher | Arrow Up/Down | Navigate options     | ✅ Working               |
+| LanguageSwitcher | Escape        | Close dropdown       | ✅ Working               |
+| FAQ Accordion    | Tab           | Focus buttons        | ✅ Working               |
+| FAQ Accordion    | Enter/Space   | Toggle panel         | ✅ Working               |
+| Carousel         | Tab           | Focus pause button   | ✅ Working               |
+| Carousel         | Enter         | Toggle pause/play    | ✅ Working               |
+| Buttons          | Tab           | Focus                | ✅ Working               |
+| Buttons          | Enter/Space   | Activate             | ✅ Working               |
+| Links            | Tab           | Focus                | ⚠️ Missing visible focus |
+| Links            | Enter         | Navigate             | ✅ Working               |
 
 ### Required Keyboard Patterns
 
 #### Accordion (ARIA Authoring Practices)
+
 ```
 Tab           Move focus to next focusable element
 Enter/Space   Toggle expanded state
@@ -1458,6 +1543,7 @@ End           Move focus to last accordion header (optional)
 ```
 
 #### Listbox (Language Switcher)
+
 ```
 Tab           Move focus into/out of listbox
 Down Arrow    Move focus to next option
@@ -1469,6 +1555,7 @@ Escape        Close listbox
 ```
 
 #### Dialog (if implemented)
+
 ```
 Tab           Move focus within dialog
 Shift+Tab     Move focus backwards within dialog
@@ -1479,7 +1566,7 @@ Escape        Close dialog
 
 ```jsx
 // 1. Focus trap for modals
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect } from "react";
 
 const useFocusTrap = (isOpen) => {
   const containerRef = useRef(null);
@@ -1494,7 +1581,7 @@ const useFocusTrap = (isOpen) => {
     const lastElement = focusableElements[focusableElements.length - 1];
 
     const handleKeyDown = (e) => {
-      if (e.key !== 'Tab') return;
+      if (e.key !== "Tab") return;
 
       if (e.shiftKey && document.activeElement === firstElement) {
         e.preventDefault();
@@ -1505,10 +1592,10 @@ const useFocusTrap = (isOpen) => {
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
     firstElement?.focus();
 
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
   return containerRef;
@@ -1522,18 +1609,18 @@ const RovingTabIndex = ({ items, onSelect }) => {
     let newIndex = index;
 
     switch (e.key) {
-      case 'ArrowRight':
-      case 'ArrowDown':
+      case "ArrowRight":
+      case "ArrowDown":
         newIndex = (index + 1) % items.length;
         break;
-      case 'ArrowLeft':
-      case 'ArrowUp':
+      case "ArrowLeft":
+      case "ArrowUp":
         newIndex = (index - 1 + items.length) % items.length;
         break;
-      case 'Home':
+      case "Home":
         newIndex = 0;
         break;
-      case 'End':
+      case "End":
         newIndex = items.length - 1;
         break;
       default:
@@ -1570,6 +1657,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ### Required ARIA Patterns
 
 #### 1. Landmark Regions
+
 ```jsx
 <header role="banner">
   <nav role="navigation" aria-label="Main">
@@ -1591,6 +1679,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ```
 
 #### 2. Live Regions
+
 ```jsx
 // Polite announcements (wait for user to finish)
 <div aria-live="polite" aria-atomic="true">
@@ -1620,6 +1709,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ```
 
 #### 3. Expandable Content
+
 ```jsx
 <button
   aria-expanded={isExpanded}
@@ -1639,6 +1729,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ```
 
 #### 4. Tabs
+
 ```jsx
 <div role="tablist" aria-label="Features">
   {tabs.map((tab, index) => (
@@ -1653,23 +1744,26 @@ const RovingTabIndex = ({ items, onSelect }) => {
       {tab.label}
     </button>
   ))}
-</div>
+</div>;
 
-{tabs.map((tab, index) => (
-  <div
-    key={tab.id}
-    role="tabpanel"
-    id={`panel-${tab.id}`}
-    aria-labelledby={`tab-${tab.id}`}
-    hidden={activeTab !== index}
-    tabIndex={0}
-  >
-    {tab.content}
-  </div>
-))}
+{
+  tabs.map((tab, index) => (
+    <div
+      key={tab.id}
+      role="tabpanel"
+      id={`panel-${tab.id}`}
+      aria-labelledby={`tab-${tab.id}`}
+      hidden={activeTab !== index}
+      tabIndex={0}
+    >
+      {tab.content}
+    </div>
+  ));
+}
 ```
 
 #### 5. Modal Dialog
+
 ```jsx
 <div
   role="dialog"
@@ -1687,6 +1781,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ```
 
 #### 6. Form Validation
+
 ```jsx
 <div className={styles.formGroup}>
   <label htmlFor="email">
@@ -1704,11 +1799,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
     We'll send your confirmation here
   </span>
   {hasError && (
-    <span
-      id="email-error"
-      className={styles.error}
-      role="alert"
-    >
+    <span id="email-error" className={styles.error} role="alert">
       Please enter a valid email address
     </span>
   )}
@@ -1717,30 +1808,30 @@ const RovingTabIndex = ({ items, onSelect }) => {
 
 ### ARIA States Reference
 
-| Attribute | Purpose | Values |
-|-----------|---------|--------|
-| `aria-expanded` | Expandable content state | `true` / `false` |
-| `aria-selected` | Selection state (tabs, listbox) | `true` / `false` |
-| `aria-checked` | Checkbox/radio state | `true` / `false` / `mixed` |
-| `aria-pressed` | Toggle button state | `true` / `false` |
-| `aria-disabled` | Disabled state | `true` / `false` |
-| `aria-hidden` | Hidden from AT | `true` / `false` |
-| `aria-invalid` | Validation state | `true` / `false` / `grammar` / `spelling` |
-| `aria-busy` | Loading state | `true` / `false` |
-| `aria-current` | Current item | `page` / `step` / `location` / `date` / `time` / `true` |
+| Attribute       | Purpose                         | Values                                                  |
+| --------------- | ------------------------------- | ------------------------------------------------------- |
+| `aria-expanded` | Expandable content state        | `true` / `false`                                        |
+| `aria-selected` | Selection state (tabs, listbox) | `true` / `false`                                        |
+| `aria-checked`  | Checkbox/radio state            | `true` / `false` / `mixed`                              |
+| `aria-pressed`  | Toggle button state             | `true` / `false`                                        |
+| `aria-disabled` | Disabled state                  | `true` / `false`                                        |
+| `aria-hidden`   | Hidden from AT                  | `true` / `false`                                        |
+| `aria-invalid`  | Validation state                | `true` / `false` / `grammar` / `spelling`               |
+| `aria-busy`     | Loading state                   | `true` / `false`                                        |
+| `aria-current`  | Current item                    | `page` / `step` / `location` / `date` / `time` / `true` |
 
 ### ARIA Properties Reference
 
-| Attribute | Purpose | Example |
-|-----------|---------|---------|
-| `aria-label` | Accessible name | `aria-label="Close menu"` |
-| `aria-labelledby` | Label from element | `aria-labelledby="heading-id"` |
-| `aria-describedby` | Description from element | `aria-describedby="hint-id"` |
-| `aria-controls` | Controls relationship | `aria-controls="panel-id"` |
-| `aria-owns` | Parent-child relationship | `aria-owns="child-id"` |
-| `aria-live` | Live region type | `polite` / `assertive` / `off` |
-| `aria-atomic` | Announce all or changes | `true` / `false` |
-| `aria-relevant` | What changes to announce | `additions` / `removals` / `text` / `all` |
+| Attribute          | Purpose                   | Example                                   |
+| ------------------ | ------------------------- | ----------------------------------------- |
+| `aria-label`       | Accessible name           | `aria-label="Close menu"`                 |
+| `aria-labelledby`  | Label from element        | `aria-labelledby="heading-id"`            |
+| `aria-describedby` | Description from element  | `aria-describedby="hint-id"`              |
+| `aria-controls`    | Controls relationship     | `aria-controls="panel-id"`                |
+| `aria-owns`        | Parent-child relationship | `aria-owns="child-id"`                    |
+| `aria-live`        | Live region type          | `polite` / `assertive` / `off`            |
+| `aria-atomic`      | Announce all or changes   | `true` / `false`                          |
+| `aria-relevant`    | What changes to announce  | `additions` / `removals` / `text` / `all` |
 
 ---
 
@@ -1748,22 +1839,25 @@ const RovingTabIndex = ({ items, onSelect }) => {
 
 ### Breakpoint Testing
 
-| Breakpoint | Width | Target Devices | Status |
-|------------|-------|----------------|--------|
-| Mobile S | 320px | iPhone SE, small Android | ⚠️ Test needed |
-| Mobile M | 375px | iPhone 12/13/14 | ⚠️ Test needed |
-| Mobile L | 425px | Large phones | ⚠️ Test needed |
-| Tablet | 768px | iPad, tablets | ⚠️ Test needed |
-| Laptop | 1024px | Small laptops | ✅ |
-| Desktop | 1440px | Desktops | ✅ |
-| 4K | 2560px | Large monitors | ⚠️ Test needed |
+| Breakpoint | Width  | Target Devices           | Status         |
+| ---------- | ------ | ------------------------ | -------------- |
+| Mobile S   | 320px  | iPhone SE, small Android | ⚠️ Test needed |
+| Mobile M   | 375px  | iPhone 12/13/14          | ⚠️ Test needed |
+| Mobile L   | 425px  | Large phones             | ⚠️ Test needed |
+| Tablet     | 768px  | iPad, tablets            | ⚠️ Test needed |
+| Laptop     | 1024px | Small laptops            | ✅             |
+| Desktop    | 1440px | Desktops                 | ✅             |
+| 4K         | 2560px | Large monitors           | ⚠️ Test needed |
 
 ### Responsive Issues to Check
 
 #### 1. Text Overflow
+
 ```scss
 /* Prevent text overflow */
-.title, .heading, .text {
+.title,
+.heading,
+.text {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
@@ -1776,6 +1870,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ```
 
 #### 2. Touch Target Sizing
+
 ```scss
 /* Mobile touch targets */
 @media (pointer: coarse) {
@@ -1790,6 +1885,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ```
 
 #### 3. Viewport Meta
+
 ```html
 <meta
   name="viewport"
@@ -1800,6 +1896,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 **Important:** Do NOT include `user-scalable=no` or `maximum-scale=1` as these prevent zooming.
 
 #### 4. Safe Areas (Notch/Island)
+
 ```scss
 /* Support for notched devices */
 .header {
@@ -1814,6 +1911,7 @@ const RovingTabIndex = ({ items, onSelect }) => {
 ```
 
 #### 5. Container Queries (Modern)
+
 ```scss
 /* Container queries for component-level responsiveness */
 .card-container {
@@ -1852,7 +1950,9 @@ const RovingTabIndex = ({ items, onSelect }) => {
     font-size: 16px; /* Prevent iOS zoom on focus */
   }
 
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     font-size: 16px; /* Prevent iOS zoom */
   }
 }
@@ -1877,6 +1977,7 @@ not op_mini all
 ### Browser-Specific Considerations
 
 #### Safari/iOS
+
 ```scss
 /* Fix for iOS button styling */
 button {
@@ -1885,7 +1986,9 @@ button {
 }
 
 /* Fix for iOS input zoom */
-input, select, textarea {
+input,
+select,
+textarea {
   font-size: 16px;
 }
 
@@ -1903,6 +2006,7 @@ html {
 ```
 
 #### Firefox
+
 ```scss
 /* Custom scrollbar */
 * {
@@ -1917,6 +2021,7 @@ html {
 ```
 
 #### Chrome/Edge
+
 ```scss
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -1935,14 +2040,14 @@ html {
 
 ### Assistive Technology Compatibility
 
-| Screen Reader | Browser | Status |
-|---------------|---------|--------|
-| NVDA | Firefox, Chrome | Test Required |
-| JAWS | Chrome, Edge | Test Required |
-| VoiceOver | Safari (macOS) | Test Required |
-| VoiceOver | Safari (iOS) | Test Required |
-| TalkBack | Chrome (Android) | Test Required |
-| Narrator | Edge | Test Required |
+| Screen Reader | Browser          | Status        |
+| ------------- | ---------------- | ------------- |
+| NVDA          | Firefox, Chrome  | Test Required |
+| JAWS          | Chrome, Edge     | Test Required |
+| VoiceOver     | Safari (macOS)   | Test Required |
+| VoiceOver     | Safari (iOS)     | Test Required |
+| TalkBack      | Chrome (Android) | Test Required |
+| Narrator      | Edge             | Test Required |
 
 ### Testing Checklist
 
@@ -1950,22 +2055,26 @@ html {
 ## Browser Testing Checklist
 
 ### Desktop Browsers
+
 - [ ] Chrome (latest 2 versions)
 - [ ] Firefox (latest 2 versions)
 - [ ] Safari (latest 2 versions)
 - [ ] Edge (latest 2 versions)
 
 ### Mobile Browsers
+
 - [ ] iOS Safari
 - [ ] Chrome for Android
 - [ ] Samsung Internet
 
 ### Screen Readers
+
 - [ ] NVDA + Firefox
 - [ ] VoiceOver + Safari
 - [ ] JAWS + Chrome (if available)
 
 ### Accessibility Tools
+
 - [ ] axe DevTools audit
 - [ ] WAVE extension audit
 - [ ] Lighthouse accessibility score
@@ -1978,15 +2087,15 @@ html {
 
 ### Current Image Inventory
 
-| Category | Files | Current Size | Target Size | Savings |
-|----------|-------|--------------|-------------|---------|
-| Feature Highlights | 4 PNG | 2.7 MB | 400 KB | 85% |
-| Social Proof | 3 JPG | 1.75 MB | 300 KB | 83% |
-| X-Ray Section | 4 files | 1.27 MB | 400 KB | 69% |
-| Modern Workflow | 3 WebP | 147 KB | 147 KB | 0% |
-| Analytics | 3 WebP | 147 KB | 147 KB | 0% |
-| Delivery | 2 WebP | 98 KB | 98 KB | 0% |
-| **Total** | **21** | **6.1 MB** | **1.5 MB** | **75%** |
+| Category           | Files   | Current Size | Target Size | Savings |
+| ------------------ | ------- | ------------ | ----------- | ------- |
+| Feature Highlights | 4 PNG   | 2.7 MB       | 400 KB      | 85%     |
+| Social Proof       | 3 JPG   | 1.75 MB      | 300 KB      | 83%     |
+| X-Ray Section      | 4 files | 1.27 MB      | 400 KB      | 69%     |
+| Modern Workflow    | 3 WebP  | 147 KB       | 147 KB      | 0%      |
+| Analytics          | 3 WebP  | 147 KB       | 147 KB      | 0%      |
+| Delivery           | 2 WebP  | 98 KB        | 98 KB       | 0%      |
+| **Total**          | **21**  | **6.1 MB**   | **1.5 MB**  | **75%** |
 
 ### Optimization Script
 
@@ -2004,45 +2113,45 @@ Create `scripts/optimize-images.js`:
  * npm install sharp glob fs-extra
  */
 
-const sharp = require('sharp');
-const glob = require('glob');
-const path = require('path');
-const fs = require('fs-extra');
+const sharp = require("sharp");
+const glob = require("glob");
+const path = require("path");
+const fs = require("fs-extra");
 
 // Configuration
 const CONFIG = {
-  inputDir: 'public',
-  outputDir: 'public/optimized',
+  inputDir: "public",
+  outputDir: "public/optimized",
 
   // Responsive breakpoints
   sizes: [320, 640, 768, 1024, 1280, 1920],
 
   // Output formats
-  formats: ['webp', 'avif', 'jpg'],
+  formats: ["webp", "avif", "jpg"],
 
   // Quality settings
   quality: {
     webp: 80,
     avif: 65,
     jpg: 80,
-    png: 80
+    png: 80,
   },
 
   // Directories to process
   directories: [
-    'xray',
-    'proposal_in_minutes',
-    'soundFamiliar',
-    'howitworks',
-    'analytics',
-    'delivery'
+    "xray",
+    "proposal_in_minutes",
+    "soundFamiliar",
+    "howitworks",
+    "analytics",
+    "delivery",
   ],
 
   // File patterns to process
-  patterns: ['**/*.{jpg,jpeg,png,webp}'],
+  patterns: ["**/*.{jpg,jpeg,png,webp}"],
 
   // Files to skip
-  exclude: ['**/optimized/**', '**/node_modules/**']
+  exclude: ["**/optimized/**", "**/node_modules/**"],
 };
 
 // Statistics tracking
@@ -2051,7 +2160,7 @@ const stats = {
   skipped: 0,
   errors: [],
   originalSize: 0,
-  optimizedSize: 0
+  optimizedSize: 0,
 };
 
 /**
@@ -2070,11 +2179,11 @@ async function getFileSize(filePath) {
  * Format bytes to human readable
  */
 function formatBytes(bytes) {
-  if (bytes === 0) return '0 Bytes';
+  if (bytes === 0) return "0 Bytes";
   const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const sizes = ["Bytes", "KB", "MB", "GB"];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 
 /**
@@ -2094,7 +2203,11 @@ async function processImage(inputPath) {
     const originalSize = await getFileSize(inputPath);
     stats.originalSize += originalSize;
 
-    console.log(`  Original: ${metadata.width}x${metadata.height} (${formatBytes(originalSize)})`);
+    console.log(
+      `  Original: ${metadata.width}x${metadata.height} (${formatBytes(
+        originalSize
+      )})`
+    );
 
     // Generate each size
     for (const width of CONFIG.sizes) {
@@ -2113,25 +2226,24 @@ async function processImage(inputPath) {
         await fs.ensureDir(path.dirname(outputPath));
 
         // Process image
-        let pipeline = sharp(inputPath)
-          .resize(width, height, {
-            fit: 'cover',
-            withoutEnlargement: true
-          });
+        let pipeline = sharp(inputPath).resize(width, height, {
+          fit: "cover",
+          withoutEnlargement: true,
+        });
 
         // Apply format-specific settings
         switch (format) {
-          case 'webp':
+          case "webp":
             pipeline = pipeline.webp({ quality: CONFIG.quality.webp });
             break;
-          case 'avif':
+          case "avif":
             pipeline = pipeline.avif({ quality: CONFIG.quality.avif });
             break;
-          case 'jpg':
+          case "jpg":
             pipeline = pipeline.jpeg({
               quality: CONFIG.quality.jpg,
               progressive: true,
-              mozjpeg: true
+              mozjpeg: true,
             });
             break;
         }
@@ -2146,7 +2258,7 @@ async function processImage(inputPath) {
     }
 
     // Generate original size in modern formats
-    for (const format of ['webp', 'avif']) {
+    for (const format of ["webp", "avif"]) {
       const outputFileName = `${baseName}.${format}`;
       const outputPath = path.join(CONFIG.outputDir, dirName, outputFileName);
 
@@ -2154,9 +2266,9 @@ async function processImage(inputPath) {
 
       let pipeline = sharp(inputPath);
 
-      if (format === 'webp') {
+      if (format === "webp") {
         pipeline = pipeline.webp({ quality: CONFIG.quality.webp });
-      } else if (format === 'avif') {
+      } else if (format === "avif") {
         pipeline = pipeline.avif({ quality: CONFIG.quality.avif });
       }
 
@@ -2167,7 +2279,6 @@ async function processImage(inputPath) {
     }
 
     stats.processed++;
-
   } catch (error) {
     console.error(`  Error: ${error.message}`);
     stats.errors.push({ file: inputPath, error: error.message });
@@ -2289,19 +2400,23 @@ export function ResponsiveBackgroundImage({
  * Main execution
  */
 async function main() {
-  console.log('========================================');
-  console.log('Image Optimization Script');
-  console.log('========================================\n');
+  console.log("========================================");
+  console.log("Image Optimization Script");
+  console.log("========================================\n");
 
   // Clean output directory
-  console.log('Cleaning output directory...');
+  console.log("Cleaning output directory...");
   await fs.emptyDir(CONFIG.outputDir);
 
   // Find all images
   const images = [];
 
   for (const dir of CONFIG.directories) {
-    const pattern = path.join(CONFIG.inputDir, dir, '**/*.{jpg,jpeg,png,webp,PNG,JPG,JPEG}');
+    const pattern = path.join(
+      CONFIG.inputDir,
+      dir,
+      "**/*.{jpg,jpeg,png,webp,PNG,JPG,JPEG}"
+    );
     const files = glob.sync(pattern, { ignore: CONFIG.exclude });
     images.push(...files);
   }
@@ -2315,29 +2430,33 @@ async function main() {
 
   // Generate component code
   const componentCode = generateComponentCode();
-  const componentPath = path.join('src', 'components', 'ResponsiveImage.jsx');
+  const componentPath = path.join("src", "components", "ResponsiveImage.jsx");
   await fs.ensureDir(path.dirname(componentPath));
   await fs.writeFile(componentPath, componentCode);
   console.log(`\nGenerated component: ${componentPath}`);
 
   // Print summary
-  console.log('\n========================================');
-  console.log('Summary');
-  console.log('========================================');
+  console.log("\n========================================");
+  console.log("Summary");
+  console.log("========================================");
   console.log(`Processed: ${stats.processed} images`);
   console.log(`Skipped: ${stats.skipped} images`);
   console.log(`Original size: ${formatBytes(stats.originalSize)}`);
   console.log(`Optimized size: ${formatBytes(stats.optimizedSize)}`);
-  console.log(`Savings: ${formatBytes(stats.originalSize - stats.optimizedSize)} (${Math.round((1 - stats.optimizedSize / stats.originalSize) * 100)}%)`);
+  console.log(
+    `Savings: ${formatBytes(
+      stats.originalSize - stats.optimizedSize
+    )} (${Math.round((1 - stats.optimizedSize / stats.originalSize) * 100)}%)`
+  );
 
   if (stats.errors.length > 0) {
-    console.log('\nErrors:');
+    console.log("\nErrors:");
     stats.errors.forEach(({ file, error }) => {
       console.log(`  ${file}: ${error}`);
     });
   }
 
-  console.log('\nDone!');
+  console.log("\nDone!");
 }
 
 main().catch(console.error);
@@ -2346,6 +2465,7 @@ main().catch(console.error);
 ### Package.json Scripts
 
 Add to `package.json`:
+
 ```json
 {
   "scripts": {
@@ -2369,32 +2489,32 @@ After running the optimization script:
 <div
   className={styles.cardImage}
   style={{ backgroundImage: `url(${card.image})` }}
-/>
+/>;
 
 // After
-import { ResponsiveBackgroundImage } from '@/components/ResponsiveImage';
+import { ResponsiveBackgroundImage } from "@/components/ResponsiveImage";
 
 <ResponsiveBackgroundImage
   src={card.image}
   alt={card.imageAlt}
   className={styles.cardImage}
-/>
+/>;
 ```
 
 ```jsx
 // Before
-<img src="/proposal_in_minutes/no_more_minutes.png" alt="Feature" />
+<img src="/proposal_in_minutes/no_more_minutes.jpg" alt="Feature" />;
 
 // After
-import { ResponsiveImage } from '@/components/ResponsiveImage';
+import { ResponsiveImage } from "@/components/ResponsiveImage";
 
 <ResponsiveImage
-  src="/proposal_in_minutes/no_more_minutes.png"
+  src="/proposal_in_minutes/no_more_minutes.jpg"
   alt="Create proposals in minutes with AI assistance"
   width={1024}
   height={768}
   sizes="(max-width: 768px) 100vw, 50vw"
-/>
+/>;
 ```
 
 ---
@@ -2404,16 +2524,19 @@ import { ResponsiveImage } from '@/components/ResponsiveImage';
 ### Automated Testing Tools
 
 #### 1. axe DevTools (Browser Extension)
+
 - Install from [Chrome Web Store](https://chrome.google.com/webstore/detail/axe-devtools/lhdoppojpmngadmnindnejefpokejbdd)
 - Run on each page
 - Export reports
 
 #### 2. WAVE (Web Accessibility Evaluation Tool)
+
 - Install from [wave.webaim.org](https://wave.webaim.org/)
 - Run on each page
 - Check for errors, alerts, and structural issues
 
 #### 3. Lighthouse (Built into Chrome DevTools)
+
 ```bash
 # Run via CLI
 npm install -g lighthouse
@@ -2421,6 +2544,7 @@ lighthouse https://your-site.com --output html --output-path ./reports/lighthous
 ```
 
 #### 4. Pa11y (CLI Testing)
+
 ```bash
 npm install -g pa11y
 
@@ -2432,6 +2556,7 @@ pa11y-ci
 ```
 
 Configuration file `.pa11yci`:
+
 ```json
 {
   "defaults": {
@@ -2447,25 +2572,28 @@ Configuration file `.pa11yci`:
 ```
 
 #### 5. ESLint jsx-a11y Plugin
+
 Already included in Next.js. Check rules in `eslint.config.mjs`:
+
 ```javascript
 module.exports = {
-  extends: ['next/core-web-vitals'],
+  extends: ["next/core-web-vitals"],
   rules: {
-    'jsx-a11y/alt-text': 'error',
-    'jsx-a11y/anchor-is-valid': 'error',
-    'jsx-a11y/aria-props': 'error',
-    'jsx-a11y/aria-proptypes': 'error',
-    'jsx-a11y/aria-unsupported-elements': 'error',
-    'jsx-a11y/role-has-required-aria-props': 'error',
-    'jsx-a11y/role-supports-aria-props': 'error',
-  }
+    "jsx-a11y/alt-text": "error",
+    "jsx-a11y/anchor-is-valid": "error",
+    "jsx-a11y/aria-props": "error",
+    "jsx-a11y/aria-proptypes": "error",
+    "jsx-a11y/aria-unsupported-elements": "error",
+    "jsx-a11y/role-has-required-aria-props": "error",
+    "jsx-a11y/role-supports-aria-props": "error",
+  },
 };
 ```
 
 ### Manual Testing Procedures
 
 #### Keyboard Navigation Test
+
 ```markdown
 ## Keyboard Navigation Checklist
 
@@ -2480,6 +2608,7 @@ module.exports = {
 ```
 
 #### Screen Reader Test
+
 ```markdown
 ## Screen Reader Checklist
 
@@ -2494,12 +2623,15 @@ module.exports = {
 ```
 
 #### Color Contrast Test
+
 Use tools:
+
 - [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - [Colorable](https://colorable.jxnblk.com/)
 - Chrome DevTools (inspect element > color picker shows contrast ratio)
 
 #### Zoom Test
+
 ```markdown
 ## Zoom Testing Checklist
 
@@ -2515,6 +2647,7 @@ Use tools:
 ## Implementation Checklist
 
 ### Phase 1: Critical Issues (Week 1)
+
 - [ ] CRIT-001: Add video captions and transcripts
 - [ ] CRIT-002: Fix background image accessibility
 - [ ] CRIT-003: Implement accessible form
@@ -2525,6 +2658,7 @@ Use tools:
 - [ ] CRIT-008: Dynamic language attribute
 
 ### Phase 2: High Priority (Week 2)
+
 - [ ] HIGH-001: Add aria-labelledby to sections
 - [ ] HIGH-002: Fix footer logo animation
 - [ ] HIGH-003: Improve link purpose
@@ -2539,6 +2673,7 @@ Use tools:
 - [ ] HIGH-012: Add status messages
 
 ### Phase 3: Medium Priority (Week 3)
+
 - [ ] MED-001: Add reduced motion to CSS animations
 - [ ] MED-002: Verify focus order
 - [ ] MED-003: Add multiple ways to navigate
@@ -2546,12 +2681,14 @@ Use tools:
 - [ ] MED-005 to MED-015: Complete remaining items
 
 ### Phase 4: Enhancements (Week 4)
+
 - [ ] GOOD-001 to GOOD-010: Implement enhancements
 - [ ] Run full automated audit
 - [ ] Complete manual testing
 - [ ] Document any remaining issues
 
 ### Phase 5: Image Optimization (Week 4-5)
+
 - [ ] Run image optimization script
 - [ ] Update components to use ResponsiveImage
 - [ ] Test image loading performance
@@ -2562,23 +2699,27 @@ Use tools:
 ## Resources
 
 ### Official Standards
+
 - [WCAG 2.2 Specification](https://www.w3.org/TR/WCAG22/)
 - [WCAG Quick Reference](https://www.w3.org/WAI/WCAG22/quickref/)
 - [WebAIM WCAG Checklist](https://webaim.org/standards/wcag/checklist)
 - [ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/)
 
 ### Next.js Resources
+
 - [Next.js Accessibility](https://nextjs.org/docs/architecture/accessibility)
 - [Vercel Accessibility Guide](https://vercel.com/blog/improving-the-accessibility-of-our-nextjs-site)
 - [Building Accessible Apps with Next.js](https://www.deque.com/blog/building-accessible-apps-with-next-js-and-axe-devtools/)
 
 ### Testing Tools
+
 - [axe DevTools](https://www.deque.com/axe/devtools/)
 - [WAVE](https://wave.webaim.org/)
 - [Pa11y](https://pa11y.org/)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 
 ### Image Optimization
+
 - [Sharp Documentation](https://sharp.pixelplumbing.com/)
 - [Web.dev Image Optimization](https://web.dev/fast/#optimize-your-images)
 
@@ -2586,10 +2727,10 @@ Use tools:
 
 ## Document History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | Jan 2026 | Claude | Initial comprehensive audit |
+| Version | Date     | Author | Changes                     |
+| ------- | -------- | ------ | --------------------------- |
+| 1.0     | Jan 2026 | Claude | Initial comprehensive audit |
 
 ---
 
-*This document should be reviewed and updated quarterly or when significant changes are made to the website.*
+_This document should be reviewed and updated quarterly or when significant changes are made to the website._

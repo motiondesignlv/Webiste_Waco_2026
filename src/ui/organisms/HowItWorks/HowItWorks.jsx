@@ -10,7 +10,7 @@ const xrayImages = [
   { src: "/xray/brain01.jpg", alt: "Brain scan visualization showing AI analysis" },
   { src: "/xray/brain02.jpg", alt: "Neural network pattern analysis" },
   { src: "/xray/brain03.jpg", alt: "AI-powered document processing visualization" },
-  { src: "/xray/xray.png", alt: "Proposal structure X-ray view" },
+  { src: "/xray/brain04.jpg", alt: "Proposal structure X-ray view" },
 ];
 
 export default function HowItWorks({ dictionary }) {

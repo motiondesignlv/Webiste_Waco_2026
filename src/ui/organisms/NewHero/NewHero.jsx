@@ -16,7 +16,7 @@ export default function NewHero({ dictionary }) {
 
   return (
     <section className={styles.hero}>
-      <ParticleBackground />
+      {/* <ParticleBackground /> */}
       <div className={styles.overlay} />
       <div className="page-shell">
         <div className={styles.heroGrid}>

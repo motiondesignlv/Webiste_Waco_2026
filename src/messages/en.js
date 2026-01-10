@@ -688,22 +688,22 @@ const en = {
       {
         title: "No More Waiting.",
         description: "Get professional proposals in minutes — no templates to fill out, no delays.",
-        image: "/proposal_in_minutes/no_more_minutes.png",
+        image: "/proposal_in_minutes/no_more_minutes.jpg",
       },
       {
         title: "Smarter Than Guesswork",
         description: "We track client engagement and show you exactly what they care about — so you follow up smarter.",
-        image: "/proposal_in_minutes/smarter_than_gesswork.png",
+        image: "/proposal_in_minutes/smarter_than_gesswork.jpg",
       },
       {
         title: "Tailored to You",
         description: "Every proposal adapts to your brand and voice — not generic one-size-fits-all templates.",
-        image: "/proposal_in_minutes/tailored_to_you.png",
+        image: "/proposal_in_minutes/tailored_to_you.jpg",
       },
       {
         title: "Always-On Awareness",
         description: "With each view, patterns emerge. You see what's changing — and why it matters.",
-        image: "/proposal_in_minutes/always_on_awarness.png",
+        image: "/proposal_in_minutes/always_on_awarness.jpg",
       },
     ],
   },
